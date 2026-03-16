@@ -42,12 +42,6 @@
     .toggle.on { background: #1a1a1a; }
     .toggle::after { content: ''; position: absolute; width: 14px; height: 14px; background: #fff; border-radius: 50%; top: 3px; left: 3px; transition: transform 0.2s; }
     .toggle.on::after { transform: translateX(16px); }
-    .alert-row { display: flex; align-items: center; justify-content: space-between; padding: 1rem; border: 0.5px solid #e5e5e5; border-radius: 8px; margin-bottom: 8px; }
-    .alert-label { font-size: 14px; font-weight: 500; }
-    .alert-desc { font-size: 12px; color: #888; margin-top: 2px; font-weight: 300; }
-    .timing-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 0.5rem; }
-    .timing-chip { padding: 6px 14px; border: 0.5px solid #e5e5e5; border-radius: 20px; font-size: 13px; cursor: pointer; color: #888; transition: all 0.15s; }
-    .timing-chip.selected { border-color: #1a1a1a; color: #1a1a1a; font-weight: 500; }
     .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
     .plan-card { border: 0.5px solid #e5e5e5; border-radius: 10px; padding: 1.25rem; }
     .plan-card.current { border: 2px solid #93c5fd; }
@@ -58,9 +52,15 @@
     .plan-card-features { list-style: none; display: flex; flex-direction: column; gap: 5px; }
     .plan-card-features li { font-size: 12px; color: #666; display: flex; gap: 6px; font-weight: 300; }
     .plan-card-features li::before { content: '—'; color: #ccc; flex-shrink: 0; }
-    .save-bar { padding: 1rem 1.5rem; border-top: 0.5px solid #e5e5e5; display: flex; justify-content: flex-end; gap: 10px; }
+    .save-bar { padding: 1rem 1.5rem; border-top: 0.5px solid #e5e5e5; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .save-status { font-size: 13px; color: #166534; display: none; }
     .btn-save { background: #1a1a1a; color: #fff; border: none; padding: 10px 24px; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; }
+    .btn-save:disabled { opacity: 0.5; cursor: not-allowed; }
     .btn-cancel { background: transparent; color: #888; border: 0.5px solid #ccc; padding: 10px 20px; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; }
+    .loading { padding: 3rem; text-align: center; color: #aaa; font-size: 14px; }
+    .not-found { padding: 2rem 1.5rem; }
+    .not-found input { padding: 10px 14px; border: 0.5px solid #ccc; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; width: 100%; margin-bottom: 10px; outline: none; }
+    .not-found input:focus { border-color: #1a1a1a; }
   </style>
 </head>
 <body>
@@ -72,138 +72,13 @@
   <div class="sidebar">
     <div class="sidebar-card">
       <div class="nav-item active" onclick="showPanel('events', this)">🗓 My events</div>
-      <div class="nav-item" onclick="showPanel('alerts', this)">🔔 Alert settings</div>
       <div class="nav-item" onclick="showPanel('plan', this)">💳 My plan</div>
     </div>
     <div class="sidebar-user">
-      <div class="user-name">Coen van Rappard</div>
-      <div class="user-plan">Pro plan</div>
+      <div class="user-name" id="user-name">—</div>
+      <div class="user-plan" id="user-plan">—</div>
     </div>
   </div>
-  <div class="main">
-    <div class="panel active" id="panel-events">
-      <div class="panel-card">
-        <div class="panel-header"><div class="panel-title">My events</div><div class="panel-sub">Toggle the events you want to receive ticket alerts for</div></div>
-        <div class="panel-body">
-          <div class="sport-heading">🎾 Tennis</div>
-          <div class="event-list">
-            <div class="event-row selected" onclick="toggle(this)"><div><div class="event-name">French Open</div><div class="event-date">Sale opens March 31, 2026</div></div><div class="toggle on"></div></div>
-            <div class="event-row selected" onclick="toggle(this)"><div><div class="event-name">Wimbledon</div><div class="event-date">Ballot opens September 2026</div></div><div class="toggle on"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">Australian Open</div><div class="event-date">Sale opens approx. October 2026</div></div><div class="toggle"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">US Open</div><div class="event-date">Sale opens approx. April 2026</div></div><div class="toggle"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">Rotterdam Open</div><div class="event-date">Sale opens approx. June 2026</div></div><div class="toggle"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">Libema Open</div><div class="event-date">Date TBA</div></div><div class="toggle"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">Davis Cup</div><div class="event-date">Date TBA</div></div><div class="toggle"></div></div>
-          </div>
-          <div class="sport-heading">⚽ Football</div>
-          <div class="event-list">
-            <div class="event-row selected" onclick="toggle(this)"><div><div class="event-name">Ajax</div><div class="event-date">Season tickets June 2026</div></div><div class="toggle on"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">Feyenoord</div><div class="event-date">Season tickets June 2026</div></div><div class="toggle"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">PSV</div><div class="event-date">Season tickets June 2026</div></div><div class="toggle"></div></div>
-            <div class="event-row selected" onclick="toggle(this)"><div><div class="event-name">Nederlands Elftal</div><div class="event-date">Via knvb.nl</div></div><div class="toggle on"></div></div>
-            <div class="event-row selected" onclick="toggle(this)"><div><div class="event-name">WK 2026</div><div class="event-date">Resale opens April 2, 2026</div></div><div class="toggle on"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">EK</div><div class="event-date">Sale opens late 2027</div></div><div class="toggle"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">WK Clubs</div><div class="event-date">Date TBA</div></div><div class="toggle"></div></div>
-          </div>
-          <div class="sport-heading">⛳ Golf</div>
-          <div class="event-list">
-            <div class="event-row selected" onclick="toggle(this)"><div><div class="event-name">Ryder Cup</div><div class="event-date">Ballot open now at rydercup.com</div></div><div class="toggle on"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">Solheim Cup</div><div class="event-date">Date TBA</div></div><div class="toggle"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">The Open Championship</div><div class="event-date">Sale opens approx. March 2026</div></div><div class="toggle"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">KLM Open</div><div class="event-date">Date TBA</div></div><div class="toggle"></div></div>
-          </div>
-          <div class="sport-heading">🏉 Rugby</div>
-          <div class="event-list">
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">Six Nations</div><div class="event-date">Sale opens approx. November 2026</div></div><div class="toggle"></div></div>
-          </div>
-          <div class="sport-heading">🏑 Hockey</div>
-          <div class="event-list">
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">Hockey EK</div><div class="event-date">Date TBA</div></div><div class="toggle"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">Hockey WK</div><div class="event-date">Date TBA</div></div><div class="toggle"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">Hoofdklasse Play-offs</div><div class="event-date">Date TBA</div></div><div class="toggle"></div></div>
-          </div>
-        </div>
-        <div class="save-bar"><button class="btn-save">Save preferences</button></div>
-      </div>
-    </div>
-    <div class="panel" id="panel-alerts">
-      <div class="panel-card">
-        <div class="panel-header"><div class="panel-title">Alert settings</div><div class="panel-sub">Choose how and when you want to be notified</div></div>
-        <div class="panel-body">
-          <div class="sport-heading">Alert method</div>
-          <div class="alert-row"><div><div class="alert-label">Email</div><div class="alert-desc">coenvanrappard@gmail.com</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
-          <div class="alert-row"><div><div class="alert-label">SMS</div><div class="alert-desc">Add a phone number to enable</div></div><div class="toggle" onclick="this.classList.toggle('on')"></div></div>
-          <div class="sport-heading" style="margin-top:1.5rem">When to alert me</div>
-          <div class="timing-row">
-            <div class="timing-chip selected" onclick="this.classList.toggle('selected')">1 week before</div>
-            <div class="timing-chip selected" onclick="this.classList.toggle('selected')">Day before</div>
-            <div class="timing-chip selected" onclick="this.classList.toggle('selected')">Day of</div>
-            <div class="timing-chip" onclick="this.classList.toggle('selected')">1 hour before</div>
-          </div>
-          <div class="sport-heading" style="margin-top:1.5rem">Weekly digest</div>
-          <div class="alert-row"><div><div class="alert-label">Monday morning summary</div><div class="alert-desc">Weekly overview of upcoming ticket sales</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
-        </div>
-        <div class="save-bar"><button class="btn-save">Save settings</button></div>
-      </div>
-    </div>
-    <div class="panel" id="panel-plan">
-      <div class="panel-card">
-        <div class="panel-header"><div class="panel-title">My plan</div><div class="panel-sub">You are currently on the Pro plan</div></div>
-        <div class="panel-body">
-          <div class="plan-grid">
-            <div class="plan-card"><div class="plan-card-name">Free</div><div class="plan-card-price">€0</div><div class="plan-card-period">forever</div><ul class="plan-card-features"><li>Up to 3 events</li><li>Email alerts</li><li>Day-before reminders</li></ul></div>
-            <div class="plan-card current"><div class="plan-badge">Current plan</div><div class="plan-card-name">Pro</div><div class="plan-card-price">€4</div><div class="plan-card-period">per month</div><ul class="plan-card-features"><li>Unlimited events</li><li>Email + SMS alerts</li><li>Day-before and same-day</li><li>Lottery reminders</li><li>Resale price alerts</li></ul></div>
-            <div class="plan-card"><div class="plan-card-name">Team</div><div class="plan-card-price">€12</div><div class="plan-card-period">per month · 5 people</div><ul class="plan-card-features"><li>Everything in Pro</li><li>Shared event lists</li><li>Group coordination</li><li>Priority support</li></ul></div>
-          </div>
-        </div>
-        <div class="save-bar"><button class="btn-cancel">Cancel subscription</button></div>
-      </div>
-    </div>
-  </div>
-</div>
-<script>
-function showPanel(name, el) {
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.getElementById('panel-' + name).classList.add('active');
-  el.classList.add('active');
-}
-function toggle(row) {
-  row.classList.toggle('selected');
-  row.querySelector('.toggle').classList.toggle('on');
-}
-</script>
-</body>
-</html>    .plan-card-period { font-size: 11px; color: #888; margin-bottom: 1rem; }
-    .plan-card-features { list-style: none; display: flex; flex-direction: column; gap: 5px; }
-    .plan-card-features li { font-size: 12px; color: #666; display: flex; gap: 6px; font-weight: 300; }
-    .plan-card-features li::before { content: '—'; color: #ccc; flex-shrink: 0; }
-
-    .save-bar { padding: 1rem 1.5rem; border-top: 0.5px solid #e5e5e5; display: flex; justify-content: flex-end; gap: 10px; }
-    .btn-save { background: #1a1a1a; color: #fff; border: none; padding: 10px 24px; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; }
-    .btn-cancel { background: transparent; color: #888; border: 0.5px solid #ccc; padding: 10px 20px; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; }
-  </style>
-</head>
-<body>
-
-<div class="topbar">
-  <div class="topbar-logo">nooitmeereenticketgemist</div>
-  <a href="index.html" class="topbar-back">← Back to site</a>
-</div>
-
-<div class="layout">
-  <div class="sidebar">
-    <div class="sidebar-card">
-      <div class="nav-item active" onclick="showPanel('events', this)">🗓 My events</div>
-      <div class="nav-item" onclick="showPanel('alerts', this)">🔔 Alert settings</div>
-      <div class="nav-item" onclick="showPanel('plan', this)">💳 My plan</div>
-    </div>
-    <div class="sidebar-user">
-      <div class="user-name">Coen van Rappard</div>
-      <div class="user-plan">Pro plan</div>
-    </div>
-  </div>
-
   <div class="main">
 
     <div class="panel active" id="panel-events">
@@ -212,76 +87,13 @@ function toggle(row) {
           <div class="panel-title">My events</div>
           <div class="panel-sub">Toggle the events you want to receive ticket alerts for</div>
         </div>
-        <div class="panel-body">
-
-          <div class="sport-heading">🎾 Tennis</div>
-          <div class="event-list">
-            <div class="event-row selected" onclick="toggle(this)"><div><div class="event-name">French Open</div><div class="event-date">Sale opens March 31, 2026</div></div><div class="toggle on"></div></div>
-            <div class="event-row selected" onclick="toggle(this)"><div><div class="event-name">Wimbledon</div><div class="event-date">Ballot opens September 2026</div></div><div class="toggle on"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">Australian Open</div><div class="event-date">Sale opens approx. October 2026</div></div><div class="toggle"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">US Open</div><div class="event-date">Sale opens approx. April 2026</div></div><div class="toggle"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">Rotterdam Open</div><div class="event-date">Sale opens approx. June 2026</div></div><div class="toggle"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">Libema Open</div><div class="event-date">Date TBA</div></div><div class="toggle"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">Davis Cup</div><div class="event-date">Date TBA</div></div><div class="toggle"></div></div>
-          </div>
-
-          <div class="sport-heading">⚽ Football</div>
-          <div class="event-list">
-            <div class="event-row selected" onclick="toggle(this)"><div><div class="event-name">Ajax</div><div class="event-date">Season tickets June 2026</div></div><div class="toggle on"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">Feyenoord</div><div class="event-date">Season tickets June 2026</div></div><div class="toggle"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">PSV</div><div class="event-date">Season tickets June 2026</div></div><div class="toggle"></div></div>
-            <div class="event-row selected" onclick="toggle(this)"><div><div class="event-name">Nederlands Elftal</div><div class="event-date">Via knvb.nl</div></div><div class="toggle on"></div></div>
-            <div class="event-row selected" onclick="toggle(this)"><div><div class="event-name">WK 2026</div><div class="event-date">Resale opens April 2, 2026</div></div><div class="toggle on"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">EK</div><div class="event-date">Sale opens late 2027</div></div><div class="toggle"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">WK Clubs</div><div class="event-date">Date TBA</div></div><div class="toggle"></div></div>
-          </div>
-
-          <div class="sport-heading">⛳ Golf</div>
-          <div class="event-list">
-            <div class="event-row selected" onclick="toggle(this)"><div><div class="event-name">Ryder Cup</div><div class="event-date">Ballot open now at rydercup.com</div></div><div class="toggle on"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">Solheim Cup</div><div class="event-date">Date TBA</div></div><div class="toggle"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">The Open Championship</div><div class="event-date">Sale opens approx. March 2026</div></div><div class="toggle"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">KLM Open</div><div class="event-date">Date TBA</div></div><div class="toggle"></div></div>
-          </div>
-
-          <div class="sport-heading">🏉 Rugby</div>
-          <div class="event-list">
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">Six Nations</div><div class="event-date">Sale opens approx. November 2026</div></div><div class="toggle"></div></div>
-          </div>
-
-          <div class="sport-heading">🏑 Hockey</div>
-          <div class="event-list">
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">Hockey EK</div><div class="event-date">Date TBA</div></div><div class="toggle"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">Hockey WK</div><div class="event-date">Date TBA</div></div><div class="toggle"></div></div>
-            <div class="event-row" onclick="toggle(this)"><div><div class="event-name">Hoofdklasse Play-offs</div><div class="event-date">Date TBA</div></div><div class="toggle"></div></div>
-          </div>
-
+        <div class="panel-body" id="events-body">
+          <div class="loading">Loading your preferences…</div>
         </div>
-        <div class="save-bar"><button class="btn-save">Save preferences</button></div>
-      </div>
-    </div>
-
-    <div class="panel" id="panel-alerts">
-      <div class="panel-card">
-        <div class="panel-header">
-          <div class="panel-title">Alert settings</div>
-          <div class="panel-sub">Choose how and when you want to be notified</div>
+        <div class="save-bar">
+          <div class="save-status" id="save-status">Saved!</div>
+          <button class="btn-save" id="btn-save" onclick="savePreferences()">Save preferences</button>
         </div>
-        <div class="panel-body">
-          <div class="sport-heading">Alert method</div>
-          <div class="alert-row"><div><div class="alert-label">Email</div><div class="alert-desc">coenvanrappard@gmail.com</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
-          <div class="alert-row"><div><div class="alert-label">SMS</div><div class="alert-desc">Add a phone number to enable</div></div><div class="toggle" onclick="this.classList.toggle('on')"></div></div>
-          <div class="sport-heading" style="margin-top:1.5rem">When to alert me</div>
-          <div class="timing-row">
-            <div class="timing-chip selected" onclick="this.classList.toggle('selected')">1 week before</div>
-            <div class="timing-chip selected" onclick="this.classList.toggle('selected')">Day before</div>
-            <div class="timing-chip selected" onclick="this.classList.toggle('selected')">Day of</div>
-            <div class="timing-chip" onclick="this.classList.toggle('selected')">1 hour before</div>
-          </div>
-          <div class="sport-heading" style="margin-top:1.5rem">Weekly digest</div>
-          <div class="alert-row"><div><div class="alert-label">Monday morning summary</div><div class="alert-desc">Weekly overview of upcoming ticket sales</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
-        </div>
-        <div class="save-bar"><button class="btn-save">Save settings</button></div>
       </div>
     </div>
 
@@ -289,49 +101,183 @@ function toggle(row) {
       <div class="panel-card">
         <div class="panel-header">
           <div class="panel-title">My plan</div>
-          <div class="panel-sub">You are currently on the Pro plan</div>
+          <div class="panel-sub" id="plan-sub">—</div>
         </div>
         <div class="panel-body">
           <div class="plan-grid">
-            <div class="plan-card">
+            <div class="plan-card" id="plan-card-free">
               <div class="plan-card-name">Free</div>
               <div class="plan-card-price">€0</div>
               <div class="plan-card-period">forever</div>
-              <ul class="plan-card-features"><li>Up to 3 events</li><li>Email alerts</li><li>Day-before reminders</li></ul>
+              <ul class="plan-card-features"><li>Up to 3 events</li><li>Email alerts</li><li>Weekly digest</li></ul>
             </div>
-            <div class="plan-card current">
-              <div class="plan-badge">Current plan</div>
+            <div class="plan-card" id="plan-card-pro">
               <div class="plan-card-name">Pro</div>
               <div class="plan-card-price">€4</div>
               <div class="plan-card-period">per month</div>
-              <ul class="plan-card-features"><li>Unlimited events</li><li>Email + SMS alerts</li><li>Day-before and same-day</li><li>Lottery reminders</li><li>Resale price alerts</li></ul>
+              <ul class="plan-card-features"><li>Unlimited events</li><li>Email alerts</li><li>Weekly digest</li><li>Lottery reminders</li></ul>
             </div>
-            <div class="plan-card">
+            <div class="plan-card" id="plan-card-team">
               <div class="plan-card-name">Team</div>
               <div class="plan-card-price">€12</div>
               <div class="plan-card-period">per month · 5 people</div>
-              <ul class="plan-card-features"><li>Everything in Pro</li><li>Shared event lists</li><li>Group coordination</li><li>Priority support</li></ul>
+              <ul class="plan-card-features"><li>Everything in Pro</li><li>Shared event lists</li><li>Priority support</li></ul>
             </div>
           </div>
         </div>
-        <div class="save-bar"><button class="btn-cancel">Cancel subscription</button></div>
+        <div class="save-bar"><button class="btn-cancel">Contact us to change plan</button></div>
       </div>
     </div>
 
   </div>
 </div>
-
 <script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzLX4e5FfwzF8R5zwynmkc3a2gBgzENhtkn9tIcLmxjIpeMLYsMDeljXChZQLcGEc4/exec';
+
+const EVENTS = {
+  tennis: {
+    label: '🎾 Tennis',
+    items: [
+      { id: 'french_open', name: 'French Open', date: 'Sale opens March 31, 2026' },
+      { id: 'wimbledon', name: 'Wimbledon', date: 'Ballot opens September 2026' },
+      { id: 'australian_open', name: 'Australian Open', date: 'Sale opens approx. October 2026' },
+      { id: 'us_open', name: 'US Open', date: 'Sale opens approx. April 2026' },
+      { id: 'rotterdam_open', name: 'Rotterdam Open', date: 'Sale opens approx. June 2026' },
+      { id: 'libema_open', name: 'Libema Open', date: 'Date TBA' },
+      { id: 'davis_cup', name: 'Davis Cup', date: 'Date TBA' },
+    ]
+  },
+  football: {
+    label: '⚽ Football',
+    items: [
+      { id: 'ajax', name: 'Ajax', date: 'Season tickets June 2026' },
+      { id: 'feyenoord', name: 'Feyenoord', date: 'Season tickets June 2026' },
+      { id: 'psv', name: 'PSV', date: 'Season tickets June 2026' },
+      { id: 'nederlands_elftal', name: 'Nederlands Elftal', date: 'Via knvb.nl' },
+      { id: 'world_cup', name: 'WK 2026', date: 'Resale opens April 2, 2026' },
+      { id: 'euro', name: 'EK', date: 'Date TBA' },
+      { id: 'club_world_cup', name: 'WK Clubs', date: 'Date TBA' },
+    ]
+  },
+  golf: {
+    label: '⛳ Golf',
+    items: [
+      { id: 'ryder_cup', name: 'Ryder Cup', date: 'Ballot open at rydercup.com' },
+      { id: 'solheim_cup', name: 'Solheim Cup', date: 'Date TBA' },
+      { id: 'the_open', name: 'The Open Championship', date: 'Sale opens approx. March 2026' },
+      { id: 'klm_open', name: 'KLM Open', date: 'Date TBA' },
+    ]
+  },
+  rugby: {
+    label: '🏉 Rugby',
+    items: [
+      { id: 'six_nations', name: 'Six Nations', date: 'Sale opens approx. November 2026' },
+    ]
+  },
+  hockey: {
+    label: '🏑 Hockey',
+    items: [
+      { id: 'hockey_ek', name: 'Hockey EK', date: 'Date TBA' },
+      { id: 'hockey_wk', name: 'Hockey WK', date: 'Date TBA' },
+      { id: 'hockey_hoofdklasse', name: 'Hoofdklasse Play-offs', date: 'Sale opens approx. March 2026' },
+    ]
+  }
+};
+
+let userEmail = null;
+let userPlan = 'free';
+
 function showPanel(name, el) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   document.getElementById('panel-' + name).classList.add('active');
   el.classList.add('active');
 }
-function toggle(row) {
+
+function toggleEvent(row) {
   row.classList.toggle('selected');
   row.querySelector('.toggle').classList.toggle('on');
 }
+
+function renderEvents(selectedIds) {
+  const body = document.getElementById('events-body');
+  let html = '';
+  for (const sport of Object.values(EVENTS)) {
+    html += `<div class="sport-heading">${sport.label}</div><div class="event-list">`;
+    for (const e of sport.items) {
+      const sel = selectedIds.includes(e.id);
+      html += `<div class="event-row${sel ? ' selected' : ''}" data-id="${e.id}" onclick="toggleEvent(this)">
+        <div><div class="event-name">${e.name}</div><div class="event-date">${e.date}</div></div>
+        <div class="toggle${sel ? ' on' : ''}"></div>
+      </div>`;
+    }
+    html += '</div>';
+  }
+  body.innerHTML = html;
+}
+
+function showEmailPrompt() {
+  document.getElementById('events-body').innerHTML = `
+    <div class="not-found">
+      <div style="font-size:14px;margin-bottom:1rem;color:#666;">Enter your email address to load your preferences.</div>
+      <input type="email" id="email-input" placeholder="your@email.com" />
+      <button class="btn-save" onclick="loadByEmail()">Load my settings</button>
+    </div>`;
+}
+
+async function loadByEmail() {
+  const input = document.getElementById('email-input').value.trim();
+  if (!input) return;
+  window.location.search = '?email=' + encodeURIComponent(input);
+}
+
+async function loadUser() {
+  const params = new URLSearchParams(window.location.search);
+  userEmail = params.get('email');
+  if (!userEmail) { showEmailPrompt(); return; }
+
+  try {
+    const res = await fetch(SCRIPT_URL + '?email=' + encodeURIComponent(userEmail));
+    const user = await res.json();
+    if (user.error) { showEmailPrompt(); return; }
+
+    userPlan = user.plan || 'free';
+    document.getElementById('user-name').textContent = user.name || userEmail;
+    document.getElementById('user-plan').textContent = userPlan + ' plan';
+    document.getElementById('plan-sub').textContent = 'You are currently on the ' + userPlan + ' plan';
+    document.getElementById('plan-card-' + userPlan)?.classList.add('current');
+
+    const selected = user.events ? user.events.split('|').filter(Boolean) : [];
+    renderEvents(selected);
+  } catch(e) {
+    showEmailPrompt();
+  }
+}
+
+async function savePreferences() {
+  const btn = document.getElementById('btn-save');
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
+
+  const selected = [...document.querySelectorAll('.event-row.selected')].map(r => r.dataset.id);
+
+  try {
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'update_events', email: userEmail, events: selected.join('|') })
+    });
+    const status = document.getElementById('save-status');
+    status.style.display = 'block';
+    setTimeout(() => { status.style.display = 'none'; }, 3000);
+  } catch(e) {
+    alert('Something went wrong. Please try again.');
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'Save preferences';
+}
+
+loadUser();
 </script>
 </body>
 </html>

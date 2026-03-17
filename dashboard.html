@@ -505,14 +505,15 @@ async function loadUser() {
 
   try {
     const res = await fetch(SCRIPT_URL + '?email=' + encodeURIComponent(userEmail));
-    const user = await res.json();
-    if (user.error) { showEmailPrompt(); return; }
+    const data = await res.json();
+    if (!data.found || data.error) { showEmailPrompt(); return; }
+    const user = data.user;
 
     userPlan = user.plan || 'free';
     document.getElementById('user-name').textContent = user.name || userEmail;
     document.getElementById('topbar-user-name').textContent = (user.name || userEmail).split(' ')[0];
     document.getElementById('user-plan').textContent = userPlan + ' plan';
-    document.getElementById('plan-sub').textContent = 'You are currently on the ' + userPlan + ' plan';
+    document.getElementById('plan-sub').textContent = 'Je zit op het ' + userPlan + ' abonnement';
     document.getElementById('plan-card-' + userPlan)?.classList.add('current');
     if (userPlan === 'free') {
       document.getElementById('upgrade-wrap').style.display = 'block';

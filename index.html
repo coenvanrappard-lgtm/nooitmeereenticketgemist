@@ -157,6 +157,13 @@
     .sport-name { font-size: 14px; font-weight: 600; margin-bottom: 8px; display: none; }
     .sport-events { font-size: 12px; color: var(--muted); line-height: 1.8; font-weight: 300; }
 
+    /* Spotlight teaser */
+    .spotlight-teaser { background: var(--dark); padding: 5.5rem 2rem; text-align: center; }
+    .spotlight-teaser-inner { max-width: 620px; margin: 0 auto; }
+    .spotlight-teaser-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #a855f7; margin-bottom: 1.5rem; }
+    .spotlight-teaser-title { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 4vw, 42px); color: #fff; line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 1.5rem; }
+    .spotlight-teaser-body { font-size: 16px; color: rgba(255,255,255,0.55); line-height: 1.75; font-weight: 300; margin-bottom: 2.5rem; }
+
     /* Pricing */
     .pricing { padding: 5.5rem 0; }
     .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 3rem; }
@@ -266,7 +273,6 @@
       <a href="#how" class="nav-link">How it works</a>
       <a href="#sports" class="nav-link">Events</a>
       <a href="#pricing" class="nav-link">Pricing</a>
-      <a href="spotlight.html" class="nav-link">Spotlight</a>
       <button class="nav-cta" onclick="openAccountModal()">My account</button>
     </div>
     <button class="nav-mobile-cta" onclick="document.getElementById('signup-form').scrollIntoView({behavior:'smooth'})">Get alerts</button>
@@ -352,6 +358,15 @@
   </div>
 </section>
 
+<section class="spotlight-teaser">
+  <div class="spotlight-teaser-inner">
+    <div class="spotlight-teaser-label">Spotlight</div>
+    <h2 class="spotlight-teaser-title">Every week, one event most people have never heard of.</h2>
+    <p class="spotlight-teaser-body">Polo on Museumplein. 3x3 basketball on the NDSM waterfront. Ice hockey in a sold-out Tilburg arena. Each week's digest includes a Spotlight — a short write-up on an event that's worth knowing about but rarely on anyone's radar. Subscribers only.</p>
+    <button class="btn-primary" onclick="document.getElementById('signup-form').scrollIntoView({behavior:'smooth'})">Get the weekly digest</button>
+  </div>
+</section>
+
 <div class="site">
   <section class="pricing" id="pricing">
     <p class="section-label">Pricing</p>
@@ -368,12 +383,6 @@
         <div class="plan-price">€7</div>
         <div class="plan-period">per month</div>
         <ul class="plan-features"><li>Unlimited events</li><li>Email + SMS alerts</li><li>All reminder types</li><li>Lottery registration reminders</li></ul>
-      </div>
-      <div class="plan">
-        <div class="plan-name">Team</div>
-        <div class="plan-price">€19</div>
-        <div class="plan-period">per month, up to 5 people</div>
-        <ul class="plan-features"><li>Everything in Pro</li><li>Shared event lists</li><li>Priority support</li></ul>
       </div>
     </div>
   </section>

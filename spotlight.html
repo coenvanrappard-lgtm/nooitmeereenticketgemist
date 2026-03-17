@@ -10,7 +10,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'DM Sans', sans-serif; color: #1a1a1a; background: #f9f9f7; }
 
-    .topbar { background: #fff; border-bottom: 0.5px solid #e5e5e5; padding: 0 2rem; height: 56px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; }
+    .topbar { background: #fff; border-bottom: 0.5px solid #e5e5e5; padding: 0 2rem; height: 56px; display: flex; align-items: center; position: sticky; top: 0; z-index: 10; }
     .topbar-inner { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1100px; margin: 0 auto; }
     .topbar-logo { font-family: 'DM Serif Display', serif; font-size: 18px; text-decoration: none; color: #1a1a1a; letter-spacing: -0.3px; }
     .topbar-links { display: flex; gap: 1.5rem; align-items: center; }
@@ -25,16 +25,16 @@
     .hero-body { font-size: 16px; color: #555; line-height: 1.8; font-weight: 300; max-width: 560px; }
     .hero-body p + p { margin-top: 1rem; }
 
-    .divider { max-width: 680px; margin: 3rem auto; padding: 0 2rem; border-top: 0.5px solid #e5e5e5; }
+    .section-label { max-width: 680px; margin: 3rem auto 1.25rem; padding: 0 2rem; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #aaa; }
 
-    .events { max-width: 680px; margin: 0 auto 5rem; padding: 0 2rem; display: flex; flex-direction: column; gap: 2rem; }
+    .events { max-width: 680px; margin: 0 auto; padding: 0 2rem; display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 4rem; }
 
     .event-card { background: #fff; border: 0.5px solid #e5e5e5; border-radius: 12px; overflow: hidden; }
     .event-card-top { padding: 1.5rem 1.75rem 1.25rem; }
-    .event-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; }
-    .event-sport { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #6b21a8; background: #faf5ff; border: 0.5px solid #e9d5ff; padding: 3px 8px; border-radius: 5px; }
+    .event-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; flex-wrap: wrap; }
+    .event-sport { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #6b21a8; background: #faf5ff; border: 0.5px solid #e9d5ff; padding: 3px 8px; border-radius: 5px; white-space: nowrap; }
     .event-location { font-size: 12px; color: #aaa; }
-    .event-name { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 0.5rem; }
+    .event-name { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 0.4rem; }
     .event-dates { font-size: 13px; color: #888; margin-bottom: 1rem; font-weight: 300; }
     .event-desc { font-size: 14px; color: #444; line-height: 1.75; font-weight: 300; }
     .event-card-bottom { padding: 1rem 1.75rem; border-top: 0.5px solid #f0f0f0; background: #fafafa; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
@@ -53,7 +53,7 @@
 
     @media (max-width: 600px) {
       .hero { margin-top: 3rem; }
-      .topbar-links { gap: 1rem; }
+      .topbar-links .topbar-link:first-child { display: none; }
     }
   </style>
 </head>
@@ -74,12 +74,46 @@
   <div class="hero-label">Spotlight</div>
   <h1 class="hero-title">Sport dat de moeite waard is,<br><em>ook al wist je het nog niet</em></h1>
   <div class="hero-body">
-    <p>De meeste mensen weten wanneer het WK is. Niet iedereen weet dat er in september polo gespeeld wordt op het Museumplein, of dat de snelste schaatsers ter wereld elke winter naar Heerenveen komen.</p>
-    <p>Fluitsignaal Spotlight is bedoeld voor evenementen die het waard zijn om naartoe te gaan, maar die minder op de radar staan. We selecteren evenementen die groot zijn in hun categorie, dicht bij Amsterdam, of allebei. Elke week kiezen we er één uit in onze nieuwsbrief.</p>
+    <p>De meeste mensen weten wanneer het WK is. Niet iedereen weet dat er in september polo gespeeld wordt op het Museumplein, of dat de beste padelspelers ter wereld naar Rotterdam komen, of dat een avond Tilburg Trappers een van de beste live-sport-ervaringen in Nederland is.</p>
+    <p>Fluitsignaal Spotlight is voor evenementen die de moeite waard zijn om naartoe te gaan, maar die minder op de radar staan. We selecteren op schaal, sfeer en bereikbaarheid vanuit Amsterdam.</p>
   </div>
 </div>
 
+<div class="section-label">Amsterdam &amp; omgeving · 2026</div>
+
 <div class="events">
+
+  <div class="event-card">
+    <div class="event-card-top">
+      <div class="event-meta">
+        <span class="event-sport">Urban Sports</span>
+        <span class="event-location">NDSM-werf, Amsterdam-Noord</span>
+      </div>
+      <div class="event-name">Urban Sports Week Amsterdam</div>
+      <div class="event-dates">Mei 2026 · Gratis toegang</div>
+      <div class="event-desc">Urban Sports Week Amsterdam is een meerdaags festival op het NDSM-terrein waar meerdere urbane sporten tegelijk plaatsvinden. Het middelpunt is de FIBA 3x3 World Tour Masters — de beste 3x3 basketbalspelers ter wereld — maar er zijn ook skateboard-, BMX- en parkourcompetities, muziek en food. Een van de best georganiseerde sportevenementen van de stad, gratis toegankelijk voor grote delen van het terrein.</div>
+    </div>
+    <div class="event-card-bottom">
+      <div class="event-status">Tickets: <strong>gratis toegang</strong></div>
+      <a href="https://uswa.nl" target="_blank" class="btn-outline">Meer informatie →</a>
+    </div>
+  </div>
+
+  <div class="event-card">
+    <div class="event-card-top">
+      <div class="event-meta">
+        <span class="event-sport">Basketball 3x3</span>
+        <span class="event-location">Hoekerodeplein, Amsterdam</span>
+      </div>
+      <div class="event-name">3x3NL Tour Finals Amsterdam</div>
+      <div class="event-dates">25 – 26 juli 2026 · Gratis toegang</div>
+      <div class="event-desc">De finale van de nationale 3x3 basketbalcompetitie. De 3x3NL Tour rijdt heel Nederland door en komt terug in Amsterdam voor de eindstrijd. Straatbasketbal op het hoogste Nederlandse niveau — openlucht, gratis toegankelijk, dichtbij de actie. Perfect als introductie tot de sport.</div>
+    </div>
+    <div class="event-card-bottom">
+      <div class="event-status">Tickets: <strong>gratis toegang</strong></div>
+      <a href="https://basketball.nl/basketball/competities/3x3nl-tour/" target="_blank" class="btn-outline">Meer informatie →</a>
+    </div>
+  </div>
 
   <div class="event-card">
     <div class="event-card-top">
@@ -89,27 +123,11 @@
       </div>
       <div class="event-name">Museumplein Polo Amsterdam</div>
       <div class="event-dates">25 – 27 september 2026 · Gratis toegang</div>
-      <div class="event-desc">Polo is een van de oudste teamsporten ter wereld. Twee teams van vier ruiters proberen met een mallet een bal door het doel te schieten. Het is snel, fysiek en verrassend makkelijk te volgen. Museumplein Polo Amsterdam brengt de sport naar een van de meest iconische pleinen van Europa — met het Rijksmuseum als achtergrond. De algemene tribune is gratis toegankelijk, wat het een gemakkelijk uitje maakt.</div>
+      <div class="event-desc">Polo in de culturele hartslag van Amsterdam, omringd door het Rijksmuseum, Van Gogh Museum en het Concertgebouw. Negen wedstrijden over drie dagen op het meest iconische plein van de stad. Polo is een van de oudste teamsporten ter wereld — twee teams van vier ruiters proberen met een mallet een bal door het doel te slaan. Snel, fysiek en verrassend makkelijk te volgen. Algemene toegang is gratis.</div>
     </div>
     <div class="event-card-bottom">
       <div class="event-status">Tickets: <strong>gratis toegang</strong></div>
       <a href="https://www.museumpleinpoloamsterdam.com" target="_blank" class="btn-outline">Meer informatie →</a>
-    </div>
-  </div>
-
-  <div class="event-card">
-    <div class="event-card-top">
-      <div class="event-meta">
-        <span class="event-sport">Basketball</span>
-        <span class="event-location">Stadscentrum, Nederland</span>
-      </div>
-      <div class="event-name">FIBA 3x3 Basketball</div>
-      <div class="event-dates">Datum nog onbekend</div>
-      <div class="event-desc">3x3 basketbal wordt gespeeld met drie spelers per team op een half veld met één basket. Wedstrijden duren 10 minuten of tot een team 21 punten heeft — wat het eerste komt. Het werd een olympische sport bij Tokio 2020 en is een van de snelst groeiende urbane sporten ter wereld. Evenementen worden doorgaans buiten gehouden in stadscentra, met luide muziek en wereldklasse atleten op een paar meter afstand van het publiek.</div>
-    </div>
-    <div class="event-card-bottom">
-      <div class="event-status">Datum: <strong>wordt bekend gemaakt</strong></div>
-      <a href="https://www.fiba.basketball/3x3" target="_blank" class="btn-outline">Meer informatie →</a>
     </div>
   </div>
 
@@ -121,11 +139,65 @@
       </div>
       <div class="event-name">Amstel Tigers IJshockey</div>
       <div class="event-dates">Seizoen 2026 – 2027</div>
-      <div class="event-desc">IJshockey is een van de meest intense sporten om live te zien — snel schaatsen, fysiek spel en doelpunten die in een oogwenk vallen. De Amstel Tigers zijn het professionele team van Amsterdam en spelen in de Nederlandse Eredivisie op de Jaap Edenbaan. De sfeer in de ijshal is anders dan bij elke andere sport: dicht op de actie, luid en sociaal. Tickets zijn betaalbaar en de grote wedstrijden zijn snel uitverkocht.</div>
+      <div class="event-desc">IJshockey is een van de meest intense sporten om live te zien — snel schaatsen, fysiek spel en doelpunten die in een oogwenk vallen. De Amstel Tigers zijn het professionele team van Amsterdam, spelend in de Nederlandse Eredivisie op de Jaap Edenbaan. De sfeer in de ijshal is anders dan bij elke andere sport: dicht op de actie, luid en sociaal. Tickets zijn betaalbaar en de grote wedstrijden zijn snel uitverkocht.</div>
     </div>
     <div class="event-card-bottom">
-      <div class="event-status">Datum: <strong>wordt bekend gemaakt</strong></div>
-      <a href="https://amsteltigers.nl" target="_blank" class="btn-outline">Meer informatie →</a>
+      <div class="event-status">Datum: <strong>seizoen 2026–2027</strong></div>
+      <a href="https://amsteltigers.nl" target="_blank" class="btn-outline">Tickets →</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="section-label">Nederland · 2026</div>
+
+<div class="events">
+
+  <div class="event-card">
+    <div class="event-card-top">
+      <div class="event-meta">
+        <span class="event-sport">Padel</span>
+        <span class="event-location">Rotterdam Ahoy</span>
+      </div>
+      <div class="event-name">Premier Padel Rotterdam</div>
+      <div class="event-dates">27 september – 4 oktober 2026 · Rotterdam Ahoy</div>
+      <div class="event-desc">Premier Padel is het hoogste niveau in de paddelsport — vergelijkbaar met de ATP Tour in tennis. Rotterdam Ahoy verandert in een padel-arena met center court en meerdere bijvelden. De beste spelers ter wereld strijden voor punten op de wereldranglijst. Kwalificaties op 27–28 september, hoofdtoernooi van 29 september tot 4 oktober. Dag- en avondsessies met aparte tickets.</div>
+    </div>
+    <div class="event-card-bottom">
+      <div class="event-status">Tickets: <strong>beschikbaar</strong></div>
+      <a href="https://premierpadelrotterdam.com/en/presale/" target="_blank" class="btn-outline">Tickets kopen →</a>
+    </div>
+  </div>
+
+  <div class="event-card">
+    <div class="event-card-top">
+      <div class="event-meta">
+        <span class="event-sport">Basketball 3x3</span>
+        <span class="event-location">Amsterdam</span>
+      </div>
+      <div class="event-name">FIBA 3x3 World Tour Amsterdam Masters</div>
+      <div class="event-dates">Mei 2026 · NDSM-terrein, Amsterdam-Noord</div>
+      <div class="event-desc">Het grootste 3x3 basketbalevenement van Nederland. De Amsterdam Masters is onderdeel van de FIBA World Tour en trekt olympische atleten van over de hele wereld. Gespeeld op het NDSM-terrein als onderdeel van de Urban Sports Week, met muziek en een festivalsfeer om de courts heen.</div>
+    </div>
+    <div class="event-card-bottom">
+      <div class="event-status">Datum: <strong>mei 2026</strong></div>
+      <a href="https://uswa.nl" target="_blank" class="btn-outline">Meer informatie →</a>
+    </div>
+  </div>
+
+  <div class="event-card">
+    <div class="event-card-top">
+      <div class="event-meta">
+        <span class="event-sport">IJshockey</span>
+        <span class="event-location">Tilburg</span>
+      </div>
+      <div class="event-name">Tilburg Trappers</div>
+      <div class="event-dates">Seizoen 2026 – 2027 · Play-offs in het voorjaar</div>
+      <div class="event-desc">De Tilburg Trappers zijn verreweg de meest succesvolle ijshockeyclub van Nederland. Ze spelen in de Duits-Oostenrijkse Oberliga — een niveau ver boven de Nederlandse competitie — en hebben meerdere kampioenschappen op rij gewonnen. Thuiswedstrijden zijn snel uitverkocht, de play-offs zeker. IJshockey is razendsnel, fysiek en volgt een eigen ritme dat je pas begrijpt als je het live ziet.</div>
+    </div>
+    <div class="event-card-bottom">
+      <div class="event-status">Datum: <strong>seizoen 2026–2027</strong></div>
+      <a href="https://www.trappers.nl" target="_blank" class="btn-outline">Tickets →</a>
     </div>
   </div>
 
@@ -135,12 +207,12 @@
         <span class="event-sport">Schaatsen</span>
         <span class="event-location">Thialf, Heerenveen</span>
       </div>
-      <div class="event-name">Speed Skating World Cup</div>
-      <div class="event-dates">Datum nog onbekend</div>
-      <div class="event-desc">Schaatsen is misschien wel de meest Nederlandse sport die er bestaat. Op World Cup niveau leggen schaatsers 500 meter af in minder dan 35 seconden. Thialf in Heerenveen is het thuishonk van het Nederlands nationaal team en produceert consequent wereldrecords. De sfeer tijdens Nederlandse races is elektrisch — een uitverkochte Thialf met oranje vlaggen is iets wat elke sportliefhebber minstens één keer moet meemaken.</div>
+      <div class="event-name">WK Sprint Schaatsen</div>
+      <div class="event-dates">Datum 2027 wordt bekendgemaakt · Thialf, Heerenveen</div>
+      <div class="event-desc">Sprint schaatsen is de meest explosieve vorm van langebaan schaatsen. Op wereldkampioenschapsniveau leggen mannen 500 meter af in minder dan 35 seconden. Thialf in Heerenveen is het snelste ijs ter wereld en vrijwel elk WK op dit ijs resulteert in wereldrecords. Een uitverkochte Thialf vol oranje vlaggen is iets wat elke sportliefhebber minstens één keer moet meemaken.</div>
     </div>
     <div class="event-card-bottom">
-      <div class="event-status">Datum: <strong>wordt bekend gemaakt</strong></div>
+      <div class="event-status">Datum: <strong>wordt bekendgemaakt</strong></div>
       <a href="https://www.thialf.nl" target="_blank" class="btn-outline">Meer informatie →</a>
     </div>
   </div>
@@ -148,15 +220,32 @@
   <div class="event-card">
     <div class="event-card-top">
       <div class="event-meta">
-        <span class="event-sport">Padel</span>
-        <span class="event-location">Nederland</span>
+        <span class="event-sport">Beachvolleybal</span>
+        <span class="event-location">Scheveningen, Den Haag</span>
       </div>
-      <div class="event-name">Padel Eredivisie</div>
-      <div class="event-dates">Datum nog onbekend</div>
-      <div class="event-desc">Padel is een racketsport op een omsloten baan van ongeveer een derde van een tennisveld. De wanden zijn in het spel, wat zorgt voor langere rally's. Het is de snelst groeiende sport in Nederland van de afgelopen vijf jaar, met duizenden banen nu verspreid over het land. Padel live kijken is makkelijk te volgen, ook als je nooit gespeeld hebt — de omsloten baan betekent dat je altijd dichtbij de actie zit.</div>
+      <div class="event-name">Summer BeachLife Volleyball Scheveningen</div>
+      <div class="event-dates">Zomer 2026 · Strand van Scheveningen</div>
+      <div class="event-desc">Een terugkerend beachvolleybaltoernooi op het strand van Scheveningen gedurende de hele zomer. Met de Noordzee als decor en meerdere courts naast elkaar is het een van de leukste manieren om beachvolleybal live te zien. Sfeer is relaxed, toegang is gratis of goedkoop, en het niveau varieert van recreatief tot serieus competitief. Perfect te combineren met een dag naar zee.</div>
     </div>
     <div class="event-card-bottom">
-      <div class="event-status">Datum: <strong>wordt bekend gemaakt</strong></div>
+      <div class="event-status">Datum: <strong>zomer 2026</strong></div>
+      <a href="https://scheveningen.com/en/event/914/summer-beachlife-volleyball.html" target="_blank" class="btn-outline">Meer informatie →</a>
+    </div>
+  </div>
+
+  <div class="event-card">
+    <div class="event-card-top">
+      <div class="event-meta">
+        <span class="event-sport">Equestrian</span>
+        <span class="event-location">RAI, Amsterdam</span>
+      </div>
+      <div class="event-name">Jumping Amsterdam</div>
+      <div class="event-dates">Januari 2027 · RAI Amsterdam</div>
+      <div class="event-desc">Jumping Amsterdam is een van de belangrijkste hippische evenementen van Europa en maakt deel uit van de FEI World Cup. In de RAI strijden de beste springruiters en dressuurruiters ter wereld om World Cup punten. De combinatie van kracht, precisie en de band tussen ruiter en paard op dit niveau is indrukwekkend. De RAI maakt het intiem ondanks het hoge niveau.</div>
+    </div>
+    <div class="event-card-bottom">
+      <div class="event-status">Datum: <strong>januari 2027</strong></div>
+      <a href="https://www.jumping.nl" target="_blank" class="btn-outline">Meer informatie →</a>
     </div>
   </div>
 
@@ -168,25 +257,10 @@
       </div>
       <div class="event-name">Holland's Strongest Man</div>
       <div class="event-dates">Datum nog onbekend</div>
-      <div class="event-desc">Strongman-competities zijn precies wat ze klinken — een reeks evenementen om de sterkste mens te vinden. Atleten trekken vrachtwagens, tillen boomstammen en dragen koelkasten, allemaal op tijd. Holland's Strongest Man is de nationale kwalificatie voor de World's Strongest Man en trekt een aantal van de beste atleten in de sport. Het is een van de meest publieksvriendelijke evenementen: de krachtprestaties zijn zo extreem dat ze bijna komisch zijn, en de atleten genieten oprecht van de interactie met het publiek.</div>
+      <div class="event-desc">Atleten trekken vrachtwagens, tillen boomstammen en dragen koelkasten, allemaal op tijd. Holland's Strongest Man is de nationale kwalificatie voor de World's Strongest Man en trekt een aantal van de beste atleten in de sport. Het is een van de meest publieksvriendelijke evenementen die er zijn — de krachtprestaties zijn zo extreem dat ze bijna komisch zijn, en de atleten genieten oprecht van de interactie met het publiek.</div>
     </div>
     <div class="event-card-bottom">
-      <div class="event-status">Datum: <strong>wordt bekend gemaakt</strong></div>
-    </div>
-  </div>
-
-  <div class="event-card">
-    <div class="event-card-top">
-      <div class="event-meta">
-        <span class="event-sport">Beachvolleybal</span>
-        <span class="event-location">Scheveningen, Den Haag</span>
-      </div>
-      <div class="event-name">Beachvolleybal Eredivisie</div>
-      <div class="event-dates">Datum nog onbekend</div>
-      <div class="event-desc">Beachvolleybal is twee spelers per team, gespeeld op zand, meestal in de zon. Het Nederlands nationaal team heeft een sterke traditie in de sport en Scheveningen is een van de beste plekken in Europa om het live te zien — met de Noordzee als achtergrond en een festivalsfeer rondom de velden. Tickets zijn doorgaans goedkoop, de sfeer is ontspannen en het niveau op Eredivisie-niveau is werkelijk indrukwekkend.</div>
-    </div>
-    <div class="event-card-bottom">
-      <div class="event-status">Datum: <strong>wordt bekend gemaakt</strong></div>
+      <div class="event-status">Datum: <strong>wordt bekendgemaakt</strong></div>
     </div>
   </div>
 
@@ -197,9 +271,8 @@
     <div class="mission-title">Waarom Spotlight?</div>
     <div class="mission-body">
       <p>Fluitsignaal is begonnen als een service voor mensen die geen tickets wilden missen voor grote evenementen als Wimbledon of het WK. Maar we geloven dat er veel meer de moeite waard is om live te zien.</p>
-      <p>Sommige van de beste sportmomenten vinden plaats bij evenementen waar het publiek klein is, de toegangsprijzen laag zijn en de atleten vlak naast je staan. Polo op het Museumplein. IJshockey in Amsterdam. Strongman in een hal ergens in het land.</p>
-      <p>Met Spotlight willen we mensen verbinden met evenementen die ze normaal gesproken zouden missen — niet omdat ze er niet in geïnteresseerd zijn, maar omdat ze er gewoon niet van weten.</p>
-      <p>In de toekomst willen we Spotlight personaliseren op basis van locatie, zodat we je alleen evenementen laten zien die voor jou bereikbaar zijn.</p>
+      <p>Sommige van de beste sportmomenten vinden plaats bij evenementen waar het publiek klein is, de toegangsprijzen laag zijn en de atleten vlak naast je staan. Polo op het Museumplein. 3x3 basketbal op het NDSM-terrein. IJshockey in Tilburg of Amsterdam.</p>
+      <p>Met Spotlight willen we mensen verbinden met evenementen die ze normaal gesproken zouden missen — niet omdat ze er niet in geïnteresseerd zijn, maar omdat ze er gewoon niet van weten. In de toekomst personaliseren we op basis van locatie, zodat je alleen evenementen ziet die voor jou bereikbaar zijn.</p>
     </div>
   </div>
 </div>

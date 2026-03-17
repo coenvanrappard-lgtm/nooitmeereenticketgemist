@@ -95,18 +95,14 @@
     .btn-cancel { background: transparent; color: #888; border: 0.5px solid #ccc; padding: 10px 20px; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; }
 
     /* Notifications panel */
-    .notif-section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #aaa; margin-bottom: 10px; }
-    .notif-method-toggle { display: flex; gap: 8px; }
-    .notif-method-btn { flex: 1; padding: 10px; border: 0.5px solid #e5e5e5; border-radius: 8px; background: #fff; color: #888; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s; }
-    .notif-method-btn.active { background: #1a1a1a; border-color: #1a1a1a; color: #fff; }
-    .reminder-list { display: flex; flex-direction: column; gap: 8px; }
-    .reminder-row { display: flex; align-items: center; gap: 12px; padding: 0.875rem 1rem; border: 0.5px solid #e5e5e5; border-radius: 8px; cursor: pointer; transition: border-color 0.15s; }
-    .reminder-row:hover { border-color: #bbb; }
-    .reminder-row input[type="checkbox"] { display: none; }
-    .reminder-info { flex: 1; }
-    .reminder-name { font-size: 14px; font-weight: 500; }
-    .reminder-hint { font-size: 12px; color: #888; margin-top: 2px; font-weight: 300; }
-    .reminder-toggle-wrap { flex-shrink: 0; }
+    .ncg { width: 100%; border-collapse: collapse; }
+    .ncg-header th { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #aaa; padding-bottom: 10px; text-align: center; }
+    .ncg-header th:first-child { text-align: left; }
+    .ncg-row td { padding: 12px 0; border-top: 0.5px solid #f0f0f0; vertical-align: middle; }
+    .ncg-label { flex: 1; }
+    .ncg-name { font-size: 14px; font-weight: 500; }
+    .ncg-hint { font-size: 12px; color: #888; margin-top: 2px; font-weight: 300; }
+    .ncg-cell { text-align: center; width: 72px; }
 
     /* Loading */
     .loading { padding: 3rem; text-align: center; color: #aaa; font-size: 14px; }
@@ -237,39 +233,28 @@
           <div class="panel-sub">Choose how and when you want to be notified</div>
         </div>
         <div class="panel-body">
-          <div class="notif-section-label">How to notify you</div>
-          <div class="notif-method-toggle">
-            <button class="notif-method-btn active" id="nm-email" onclick="selectNotifMethod('email')">Email</button>
-            <button class="notif-method-btn" id="nm-sms" onclick="selectNotifMethod('sms')">SMS</button>
-            <button class="notif-method-btn" id="nm-both" onclick="selectNotifMethod('both')">Both</button>
-          </div>
-          <div class="notif-section-label" style="margin-top:1.5rem;">Which reminders</div>
-          <div class="reminder-list">
-            <label class="reminder-row">
-              <input type="checkbox" id="rm-weekly" />
-              <div class="reminder-info">
-                <div class="reminder-name">Weekly digest</div>
-                <div class="reminder-hint">Every Monday — full overview of upcoming sales</div>
-              </div>
-              <div class="reminder-toggle-wrap"><div class="toggle" id="rt-weekly"></div></div>
-            </label>
-            <label class="reminder-row">
-              <input type="checkbox" id="rm-day-before" />
-              <div class="reminder-info">
-                <div class="reminder-name">Day before</div>
-                <div class="reminder-hint">Alert the day before a sale opens</div>
-              </div>
-              <div class="reminder-toggle-wrap"><div class="toggle" id="rt-day-before"></div></div>
-            </label>
-            <label class="reminder-row">
-              <input type="checkbox" id="rm-hour-before" />
-              <div class="reminder-info">
-                <div class="reminder-name">1 hour before</div>
-                <div class="reminder-hint">Alert 1 hour before the sale goes live</div>
-              </div>
-              <div class="reminder-toggle-wrap"><div class="toggle" id="rt-hour-before"></div></div>
-            </label>
-          </div>
+          <table class="ncg">
+            <thead class="ncg-header"><tr>
+              <th></th><th>Email</th><th>SMS</th>
+            </tr></thead>
+            <tbody>
+              <tr class="ncg-row">
+                <td><div class="ncg-name">Weekly digest</div><div class="ncg-hint">Every Monday — full overview of upcoming sales</div></td>
+                <td class="ncg-cell"><div class="toggle" id="rt-weekly-email" onclick="toggleRt('weekly-email')"></div></td>
+                <td class="ncg-cell"><div class="toggle" id="rt-weekly-sms" onclick="toggleRt('weekly-sms')"></div></td>
+              </tr>
+              <tr class="ncg-row">
+                <td><div class="ncg-name">Day before</div><div class="ncg-hint">Alert the day before a sale opens</div></td>
+                <td class="ncg-cell"><div class="toggle" id="rt-day-before-email" onclick="toggleRt('day-before-email')"></div></td>
+                <td class="ncg-cell"><div class="toggle" id="rt-day-before-sms" onclick="toggleRt('day-before-sms')"></div></td>
+              </tr>
+              <tr class="ncg-row">
+                <td><div class="ncg-name">1 hour before</div><div class="ncg-hint">Alert 1 hour before the sale goes live</div></td>
+                <td class="ncg-cell"><div class="toggle" id="rt-hour-before-email" onclick="toggleRt('hour-before-email')"></div></td>
+                <td class="ncg-cell"><div class="toggle" id="rt-hour-before-sms" onclick="toggleRt('hour-before-sms')"></div></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <div class="save-bar">
           <div class="save-status" id="notif-save-status">Saved!</div>
@@ -375,48 +360,46 @@ const EVENTS = {
 
 let userEmail = null;
 let userPlan = 'free';
-let currentNotifMethod = 'email';
 
-function selectNotifMethod(method) {
-  currentNotifMethod = method;
-  ['email','sms','both'].forEach(m => document.getElementById('nm-'+m).classList.toggle('active', m === method));
-}
+const REMINDER_MAP = [
+  { id: 'weekly-email',      dbKey: 'weekly_email',      type: 'weekly',      channel: 'email' },
+  { id: 'weekly-sms',        dbKey: 'weekly_sms',        type: 'weekly',      channel: 'sms'   },
+  { id: 'day-before-email',  dbKey: 'day_before_email',  type: 'day_before',  channel: 'email' },
+  { id: 'day-before-sms',    dbKey: 'day_before_sms',    type: 'day_before',  channel: 'sms'   },
+  { id: 'hour-before-email', dbKey: 'hour_before_email', type: 'hour_before', channel: 'email' },
+  { id: 'hour-before-sms',   dbKey: 'hour_before_sms',   type: 'hour_before', channel: 'sms'   },
+];
 
-function setReminderToggle(id, checked) {
-  document.getElementById('rm-'+id).checked = checked;
-  document.getElementById('rt-'+id).classList.toggle('on', checked);
-}
-
-function reminderRowClick(id) {
-  const cb = document.getElementById('rm-'+id);
-  cb.checked = !cb.checked;
-  document.getElementById('rt-'+id).classList.toggle('on', cb.checked);
+function toggleRt(id) {
+  document.getElementById('rt-' + id).classList.toggle('on');
 }
 
 function renderNotifications(notifMethod, remindersArr) {
-  selectNotifMethod(notifMethod || 'email');
-  setReminderToggle('weekly', remindersArr.includes('weekly'));
-  setReminderToggle('day-before', remindersArr.includes('day_before'));
-  setReminderToggle('hour-before', remindersArr.includes('hour_before'));
-  // wire clicks on rows
-  ['weekly','day-before','hour-before'].forEach(id => {
-    document.querySelector(`label[for-id="${id}"]`);
-    const row = document.getElementById('rt-'+id).closest('.reminder-row');
-    if (row) row.onclick = () => reminderRowClick(id);
+  const isNewFormat = remindersArr.some(r => r.includes('_email') || r.includes('_sms'));
+  REMINDER_MAP.forEach(({ id, dbKey, type, channel }) => {
+    let on;
+    if (isNewFormat) {
+      on = remindersArr.includes(dbKey);
+    } else {
+      const typeOn = remindersArr.includes(type);
+      const m = notifMethod || 'email';
+      on = typeOn && (channel === 'email' ? ['email','both'].includes(m) : ['sms','both'].includes(m));
+    }
+    document.getElementById('rt-' + id).classList.toggle('on', on);
   });
 }
 
 async function saveNotifications() {
   const btn = document.getElementById('btn-save-notif');
   btn.disabled = true; btn.textContent = 'Saving…';
-  const reminders = ['weekly','day_before','hour_before'].filter((r, i) => {
-    const ids = ['weekly','day-before','hour-before'];
-    return document.getElementById('rm-'+ids[i]).checked;
-  }).join('|');
+  const reminders = REMINDER_MAP.filter(({ id }) => document.getElementById('rt-' + id).classList.contains('on')).map(({ dbKey }) => dbKey).join('|');
+  const hasSms = REMINDER_MAP.some(({ id, channel }) => channel === 'sms' && document.getElementById('rt-' + id).classList.contains('on'));
+  const hasEmail = REMINDER_MAP.some(({ id, channel }) => channel === 'email' && document.getElementById('rt-' + id).classList.contains('on'));
+  const notifications = hasSms && hasEmail ? 'both' : hasSms ? 'sms' : 'email';
   try {
     await fetch(SCRIPT_URL, {
       method: 'POST',
-      body: JSON.stringify({ action: 'update_notifications', email: userEmail, notifications: currentNotifMethod, reminders })
+      body: JSON.stringify({ action: 'update_notifications', email: userEmail, notifications, reminders })
     });
     const status = document.getElementById('notif-save-status');
     status.style.display = 'block';

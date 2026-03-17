@@ -180,8 +180,15 @@
 
     /* Signup */
     .signup { padding: 5.5rem 0 6rem; background: var(--dark); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; }
-    .signup-inner { max-width: 1100px; margin: 0 auto; }
-    .signup-box { border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 3rem; max-width: 600px; background: rgba(255,255,255,0.04); }
+    .signup-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .signup-box { border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 3rem; background: rgba(255,255,255,0.04); }
+    .signup-aside { padding-top: 0.5rem; }
+    .signup-aside-title { font-family: 'DM Serif Display', serif; font-size: 32px; color: #fff; line-height: 1.2; letter-spacing: -0.4px; margin-bottom: 2rem; }
+    .signup-aside-items { display: flex; flex-direction: column; gap: 1.75rem; }
+    .signup-aside-item { display: flex; gap: 1rem; align-items: flex-start; }
+    .signup-aside-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .signup-aside-item-title { font-size: 14px; font-weight: 500; color: #fff; margin-bottom: 3px; }
+    .signup-aside-item-body { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; font-weight: 300; }
     .signup-title { font-family: 'DM Serif Display', serif; font-size: 34px; margin-bottom: 0.75rem; line-height: 1.2; color: #fff; }
     .signup-sub { font-size: 15px; color: rgba(255,255,255,0.55); margin-bottom: 2rem; font-weight: 300; line-height: 1.6; }
     .signup-form { display: flex; flex-direction: column; gap: 12px; }
@@ -245,6 +252,8 @@
       .step:nth-last-child(-n+2) { border-bottom: none; }
       .sports-grid { grid-template-columns: repeat(2, 1fr); }
       .plans { grid-template-columns: 1fr; }
+      .signup-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .signup-aside { order: -1; }
       .signup-box { padding: 1.75rem 1.25rem; }
       .signup-title { font-size: 26px; }
       .plan-toggle { flex-direction: column; }
@@ -495,6 +504,39 @@
         <div class="success-msg" id="success-msg">You're in! Check your inbox — alerts will start arriving shortly.</div>
         <div class="error-msg" id="error-msg">Something went wrong. Please try again.</div>
         <p class="signup-note">No spam. Just ticket alerts that actually matter.</p>
+      </div>
+    </div>
+    <div class="signup-aside">
+      <h2 class="signup-aside-title">Never scramble for tickets again.</h2>
+      <div class="signup-aside-items">
+        <div class="signup-aside-item">
+          <div class="signup-aside-icon">📬</div>
+          <div>
+            <div class="signup-aside-item-title">Weekly digest</div>
+            <div class="signup-aside-item-body">Every Monday — a full overview of upcoming sales, what's live, and what needs your attention.</div>
+          </div>
+        </div>
+        <div class="signup-aside-item">
+          <div class="signup-aside-icon">⏰</div>
+          <div>
+            <div class="signup-aside-item-title">Day-before &amp; hour alerts</div>
+            <div class="signup-aside-item-body">Get a reminder the day before a sale opens, and again one hour before — for the events you choose.</div>
+          </div>
+        </div>
+        <div class="signup-aside-item">
+          <div class="signup-aside-icon">🔦</div>
+          <div>
+            <div class="signup-aside-item-title">Spotlight</div>
+            <div class="signup-aside-item-body">Each digest features one underrated event worth going to — something you'd enjoy but probably wouldn't have found yourself.</div>
+          </div>
+        </div>
+        <div class="signup-aside-item">
+          <div class="signup-aside-icon">🎟</div>
+          <div>
+            <div class="signup-aside-item-title">Curated for the Netherlands</div>
+            <div class="signup-aside-item-body">Tennis, football, golf, rugby, hockey, and more — events you can actually get to.</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

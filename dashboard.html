@@ -94,6 +94,20 @@
     .btn-save:disabled { opacity: 0.5; cursor: not-allowed; }
     .btn-cancel { background: transparent; color: #888; border: 0.5px solid #ccc; padding: 10px 20px; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; }
 
+    /* Notifications panel */
+    .notif-section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #aaa; margin-bottom: 10px; }
+    .notif-method-toggle { display: flex; gap: 8px; }
+    .notif-method-btn { flex: 1; padding: 10px; border: 0.5px solid #e5e5e5; border-radius: 8px; background: #fff; color: #888; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s; }
+    .notif-method-btn.active { background: #1a1a1a; border-color: #1a1a1a; color: #fff; }
+    .reminder-list { display: flex; flex-direction: column; gap: 8px; }
+    .reminder-row { display: flex; align-items: center; gap: 12px; padding: 0.875rem 1rem; border: 0.5px solid #e5e5e5; border-radius: 8px; cursor: pointer; transition: border-color 0.15s; }
+    .reminder-row:hover { border-color: #bbb; }
+    .reminder-row input[type="checkbox"] { display: none; }
+    .reminder-info { flex: 1; }
+    .reminder-name { font-size: 14px; font-weight: 500; }
+    .reminder-hint { font-size: 12px; color: #888; margin-top: 2px; font-weight: 300; }
+    .reminder-toggle-wrap { flex-shrink: 0; }
+
     /* Loading */
     .loading { padding: 3rem; text-align: center; color: #aaa; font-size: 14px; }
 
@@ -169,6 +183,7 @@
     <a href="index.html" class="topbar-logo">Fluitsignaal</a>
     <div class="topbar-links">
       <button class="topbar-link active" id="nav-events" onclick="showPanel('events', this)">My events</button>
+      <button class="topbar-link" id="nav-notifications" onclick="showPanel('notifications', this)">Notifications</button>
       <button class="topbar-link" id="nav-plan" onclick="showPanel('plan', this)">My plan</button>
     </div>
     <div class="topbar-user">
@@ -181,6 +196,7 @@
 <!-- Mobile tab bar (hidden on desktop) -->
 <div class="mobile-tabs">
   <button class="mobile-tab active" id="mobile-tab-events" onclick="showPanel('events', this, 'mobile-tab-events')">My events</button>
+  <button class="mobile-tab" id="mobile-tab-notifications" onclick="showPanel('notifications', this, 'mobile-tab-notifications')">Notifications</button>
   <button class="mobile-tab" id="mobile-tab-plan" onclick="showPanel('plan', this, 'mobile-tab-plan')">My plan</button>
 </div>
 
@@ -188,6 +204,7 @@
   <div class="sidebar">
     <div class="sidebar-card">
       <div class="nav-item active" onclick="showPanel('events', this)">🗓 My events</div>
+      <div class="nav-item" onclick="showPanel('notifications', this)">🔔 Notifications</div>
       <div class="nav-item" onclick="showPanel('plan', this)">💳 My plan</div>
     </div>
     <div class="sidebar-user">
@@ -209,6 +226,54 @@
         <div class="save-bar">
           <div class="save-status" id="save-status">Saved!</div>
           <button class="btn-save" id="btn-save" onclick="savePreferences()">Save preferences</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="panel-notifications">
+      <div class="panel-card">
+        <div class="panel-header">
+          <div class="panel-title">Notifications</div>
+          <div class="panel-sub">Choose how and when you want to be notified</div>
+        </div>
+        <div class="panel-body">
+          <div class="notif-section-label">How to notify you</div>
+          <div class="notif-method-toggle">
+            <button class="notif-method-btn active" id="nm-email" onclick="selectNotifMethod('email')">Email</button>
+            <button class="notif-method-btn" id="nm-sms" onclick="selectNotifMethod('sms')">SMS</button>
+            <button class="notif-method-btn" id="nm-both" onclick="selectNotifMethod('both')">Both</button>
+          </div>
+          <div class="notif-section-label" style="margin-top:1.5rem;">Which reminders</div>
+          <div class="reminder-list">
+            <label class="reminder-row">
+              <input type="checkbox" id="rm-weekly" />
+              <div class="reminder-info">
+                <div class="reminder-name">Weekly digest</div>
+                <div class="reminder-hint">Every Monday — full overview of upcoming sales</div>
+              </div>
+              <div class="reminder-toggle-wrap"><div class="toggle" id="rt-weekly"></div></div>
+            </label>
+            <label class="reminder-row">
+              <input type="checkbox" id="rm-day-before" />
+              <div class="reminder-info">
+                <div class="reminder-name">Day before</div>
+                <div class="reminder-hint">Alert the day before a sale opens</div>
+              </div>
+              <div class="reminder-toggle-wrap"><div class="toggle" id="rt-day-before"></div></div>
+            </label>
+            <label class="reminder-row">
+              <input type="checkbox" id="rm-hour-before" />
+              <div class="reminder-info">
+                <div class="reminder-name">1 hour before</div>
+                <div class="reminder-hint">Alert 1 hour before the sale goes live</div>
+              </div>
+              <div class="reminder-toggle-wrap"><div class="toggle" id="rt-hour-before"></div></div>
+            </label>
+          </div>
+        </div>
+        <div class="save-bar">
+          <div class="save-status" id="notif-save-status">Saved!</div>
+          <button class="btn-save" id="btn-save-notif" onclick="saveNotifications()">Save preferences</button>
         </div>
       </div>
     </div>
@@ -302,8 +367,57 @@ const EVENTS = {
 
 let userEmail = null;
 let userPlan = 'free';
+let currentNotifMethod = 'email';
 
-const TODAY = new Date('2026-03-16');
+function selectNotifMethod(method) {
+  currentNotifMethod = method;
+  ['email','sms','both'].forEach(m => document.getElementById('nm-'+m).classList.toggle('active', m === method));
+}
+
+function setReminderToggle(id, checked) {
+  document.getElementById('rm-'+id).checked = checked;
+  document.getElementById('rt-'+id).classList.toggle('on', checked);
+}
+
+function reminderRowClick(id) {
+  const cb = document.getElementById('rm-'+id);
+  cb.checked = !cb.checked;
+  document.getElementById('rt-'+id).classList.toggle('on', cb.checked);
+}
+
+function renderNotifications(notifMethod, remindersArr) {
+  selectNotifMethod(notifMethod || 'email');
+  setReminderToggle('weekly', remindersArr.includes('weekly'));
+  setReminderToggle('day-before', remindersArr.includes('day_before'));
+  setReminderToggle('hour-before', remindersArr.includes('hour_before'));
+  // wire clicks on rows
+  ['weekly','day-before','hour-before'].forEach(id => {
+    document.querySelector(`label[for-id="${id}"]`);
+    const row = document.getElementById('rt-'+id).closest('.reminder-row');
+    if (row) row.onclick = () => reminderRowClick(id);
+  });
+}
+
+async function saveNotifications() {
+  const btn = document.getElementById('btn-save-notif');
+  btn.disabled = true; btn.textContent = 'Saving…';
+  const reminders = ['weekly','day_before','hour_before'].filter((r, i) => {
+    const ids = ['weekly','day-before','hour-before'];
+    return document.getElementById('rm-'+ids[i]).checked;
+  }).join('|');
+  try {
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'update_notifications', email: userEmail, notifications: currentNotifMethod, reminders })
+    });
+    const status = document.getElementById('notif-save-status');
+    status.style.display = 'block';
+    setTimeout(() => { status.style.display = 'none'; }, 3000);
+  } catch(e) { alert('Something went wrong. Please try again.'); }
+  btn.disabled = false; btn.textContent = 'Save preferences';
+}
+
+const TODAY = new Date();
 const SOON_DAYS = 30;
 
 function isSoon(dateStr) {
@@ -395,6 +509,8 @@ async function loadUser() {
 
     const selected = user.events ? user.events.split('|').filter(Boolean) : [];
     renderEvents(selected);
+    const reminders = user.reminders ? user.reminders.split('|').filter(Boolean) : ['weekly','day_before'];
+    renderNotifications(user.notifications || 'email', reminders);
   } catch(e) {
     showEmailPrompt();
   }

@@ -483,11 +483,11 @@ function showEmailPrompt() {
   wrap.innerHTML = `
     <div class="not-found-card">
       <div class="not-found-icon">🔔</div>
-      <div class="not-found-title">Access your alerts</div>
-      <p class="not-found-sub">Enter the email address you signed up with to view and update your event preferences.</p>
-      <input type="email" id="email-input" placeholder="your@email.com" onkeydown="if(event.key==='Enter')loadByEmail()" />
-      <button class="btn-save" style="width:100%" onclick="loadByEmail()">Load my settings</button>
-      <a href="index.html" class="not-found-back">Don't have an account? Sign up free</a>
+      <div class="not-found-title">Toegang tot je meldingen</div>
+      <p class="not-found-sub">Voer je e-mailadres in om je evenementen en voorkeuren te bekijken.</p>
+      <input type="email" id="email-input" placeholder="jouw@email.com" onkeydown="if(event.key==='Enter')loadByEmail()" />
+      <button class="btn-save" style="width:100%" onclick="loadByEmail()">Mijn instellingen laden</button>
+      <a href="index.html" class="not-found-back">Nog geen account? Gratis aanmelden</a>
     </div>`;
   main.prepend(wrap);
 }
@@ -495,7 +495,7 @@ function showEmailPrompt() {
 async function loadByEmail() {
   const input = document.getElementById('email-input').value.trim();
   if (!input) return;
-  window.location.search = '?email=' + encodeURIComponent(input);
+  window.location.href = window.location.pathname + '?email=' + encodeURIComponent(input);
 }
 
 async function loadUser() {
@@ -533,6 +533,7 @@ async function loadUser() {
     const reminders = user.reminders ? user.reminders.split('|').filter(Boolean) : ['weekly','day_before'];
     renderNotifications(user.notifications || 'email', reminders);
   } catch(e) {
+    console.error(e);
     showEmailPrompt();
   }
 }

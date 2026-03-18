@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Account — Fluitsignaal</title>
+  <link rel="icon" type="image/png" href="logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -13,7 +14,9 @@
     /* Topbar */
     .topbar { background: #fff; border-bottom: 0.5px solid #e5e5e5; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; height: 56px; position: sticky; top: 0; z-index: 10; max-width: 100%; }
     .topbar-inner { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1100px; margin: 0 auto; }
-    .topbar-logo { font-family: 'DM Serif Display', serif; font-size: 18px; text-decoration: none; color: #1a1a1a; letter-spacing: -0.3px; }
+    .topbar-logo { display: flex; align-items: center; gap: 9px; text-decoration: none; color: #1a1a1a; }
+    .topbar-logo img { width: 26px; height: 26px; display: block; }
+    .topbar-logo-text { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.3px; }
     .topbar-links { display: flex; align-items: center; gap: 2rem; }
     .topbar-link { font-size: 14px; color: #666; text-decoration: none; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; padding: 0; transition: color 0.15s; }
     .topbar-link:hover { color: #1a1a1a; }
@@ -176,7 +179,10 @@
 <body>
 <div class="topbar">
   <div class="topbar-inner">
-    <a href="index.html" class="topbar-logo">Fluitsignaal</a>
+    <a href="index.html" class="topbar-logo">
+      <img src="logo.png" alt="Fluitsignaal" />
+      <span class="topbar-logo-text">Fluitsignaal</span>
+    </a>
     <div class="topbar-links">
       <button class="topbar-link active" id="nav-events" onclick="showPanel('events', this)">My events</button>
       <button class="topbar-link" id="nav-notifications" onclick="showPanel('notifications', this)">Notifications</button>
@@ -295,7 +301,9 @@
 </div>
 
 <script>
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzMiPVhjHwL8p675W4XzwvKje6CbqKPFJK6Lx7L8WLNBapQMNO3usPGmAvbC_1vkQ4/exec';
+
+
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwP9GisrJfJO7_6IYiovEBBaAKNz9kUeVCPhgupX2QKAw7u7qqv5N5-zG1oYqaCD4zT/exec';
 
 const EVENTS = {
   tennis: {

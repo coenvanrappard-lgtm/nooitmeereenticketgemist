@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fluitsignaal</title>
+  <link rel="icon" type="image/png" href="logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -61,7 +62,9 @@
 
     /* Nav */
     .nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
-    .nav-logo { font-family: 'DM Serif Display', serif; font-size: 20px; letter-spacing: -0.3px; text-decoration: none; color: var(--body); }
+    .nav-logo { display: flex; align-items: center; gap: 9px; text-decoration: none; color: var(--body); }
+    .nav-logo img { width: 28px; height: 28px; display: block; }
+    .nav-logo-text { font-family: 'DM Serif Display', serif; font-size: 20px; letter-spacing: -0.3px; }
     .nav-links { display: flex; align-items: center; gap: 2rem; }
     .nav-link { font-size: 14px; color: var(--muted); text-decoration: none; transition: color 0.15s; }
     .nav-link:hover { color: var(--body); }
@@ -120,10 +123,14 @@
 
     /* Events strip */
     .divider { height: 1px; background: var(--border); }
-    .events-strip { padding: 1.5rem 0; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; align-items: center; }
-    .events-strip::-webkit-scrollbar { display: none; }
+    .events-strip { padding: 1.5rem 0; overflow: hidden; position: relative; }
+    .events-strip::before, .events-strip::after { content: ''; position: absolute; top: 0; bottom: 0; width: 60px; z-index: 2; pointer-events: none; }
+    .events-strip::before { left: 0; background: linear-gradient(to right, #fff, transparent); }
+    .events-strip::after { right: 0; background: linear-gradient(to left, #fff, transparent); }
+    .events-track { display: flex; gap: 0; animation: marquee 28s linear infinite; width: max-content; align-items: center; }
+    .events-strip:hover .events-track { animation-play-state: paused; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     .event-pill { white-space: nowrap; font-size: 13px; flex-shrink: 0; display: flex; align-items: center; gap: 8px; padding: 6px 18px; border-right: 1px solid var(--border); }
-    .event-pill:first-child { padding-left: 0; }
     .event-pill-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
     .event-pill-name { color: var(--body); font-weight: 500; }
     .event-pill-sport { color: var(--subtle); font-size: 12px; }
@@ -257,7 +264,7 @@
       .hero-sub { font-size: 16px; }
       .hero-actions { flex-direction: column; align-items: stretch; }
       .btn-primary, .btn-secondary { text-align: center; width: 100%; }
-      .events-strip { gap: 0; padding: 1.25rem 0; }
+      .events-strip { padding: 1rem 0; }
       .steps { grid-template-columns: 1fr 1fr; }
       .step { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
       .step:nth-child(2n) { border-right: none; }
@@ -289,7 +296,10 @@
 
 <div class="site">
   <nav class="nav">
-    <div class="nav-logo">Fluitsignaal</div>
+    <a class="nav-logo" href="#">
+      <img src="logo.png" alt="Fluitsignaal" />
+      <span class="nav-logo-text">Fluitsignaal</span>
+    </a>
     <div class="nav-links">
       <a href="#how" class="nav-link">How it works</a>
       <a href="#sports" class="nav-link">Events</a>
@@ -314,9 +324,20 @@
   </div>
 </div>
 
-<div class="site">
-  <div class="divider"></div>
-  <div class="events-strip">
+<div class="divider"></div>
+<div class="events-strip">
+  <div class="events-track">
+    <div class="event-pill"><span class="event-pill-dot dot-tennis"></span><span class="event-pill-name">French Open</span><span class="event-pill-sport">Tennis</span></div>
+    <div class="event-pill"><span class="event-pill-dot dot-football"></span><span class="event-pill-name">WK 2026</span><span class="event-pill-sport">Football</span></div>
+    <div class="event-pill"><span class="event-pill-dot dot-tennis"></span><span class="event-pill-name">Wimbledon</span><span class="event-pill-sport">Tennis</span></div>
+    <div class="event-pill"><span class="event-pill-dot dot-football"></span><span class="event-pill-name">Ajax</span><span class="event-pill-sport">Football</span></div>
+    <div class="event-pill"><span class="event-pill-dot dot-golf"></span><span class="event-pill-name">Ryder Cup</span><span class="event-pill-sport">Golf</span></div>
+    <div class="event-pill"><span class="event-pill-dot dot-football"></span><span class="event-pill-name">Nederlands Elftal</span><span class="event-pill-sport">Football</span></div>
+    <div class="event-pill"><span class="event-pill-dot dot-rugby"></span><span class="event-pill-name">Six Nations</span><span class="event-pill-sport">Rugby</span></div>
+    <div class="event-pill"><span class="event-pill-dot dot-hockey"></span><span class="event-pill-name">Hockey WK</span><span class="event-pill-sport">Hockey</span></div>
+    <div class="event-pill"><span class="event-pill-dot dot-golf"></span><span class="event-pill-name">KLM Open</span><span class="event-pill-sport">Golf</span></div>
+    <div class="event-pill"><span class="event-pill-dot dot-tennis"></span><span class="event-pill-name">Rotterdam Open</span><span class="event-pill-sport">Tennis</span></div>
+    <!-- duplicate for seamless loop -->
     <div class="event-pill"><span class="event-pill-dot dot-tennis"></span><span class="event-pill-name">French Open</span><span class="event-pill-sport">Tennis</span></div>
     <div class="event-pill"><span class="event-pill-dot dot-football"></span><span class="event-pill-name">WK 2026</span><span class="event-pill-sport">Football</span></div>
     <div class="event-pill"><span class="event-pill-dot dot-tennis"></span><span class="event-pill-name">Wimbledon</span><span class="event-pill-sport">Tennis</span></div>
@@ -328,7 +349,9 @@
     <div class="event-pill"><span class="event-pill-dot dot-golf"></span><span class="event-pill-name">KLM Open</span><span class="event-pill-sport">Golf</span></div>
     <div class="event-pill"><span class="event-pill-dot dot-tennis"></span><span class="event-pill-name">Rotterdam Open</span><span class="event-pill-sport">Tennis</span></div>
   </div>
-  <div class="divider"></div>
+</div>
+<div class="divider"></div>
+<div class="site">
 
   <section class="how" id="how">
     <p class="section-label">How it works</p>
@@ -612,7 +635,9 @@
 </div>
 
 <script>
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzMiPVhjHwL8p675W4XzwvKje6CbqKPFJK6Lx7L8WLNBapQMNO3usPGmAvbC_1vkQ4/exec';
+
+
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwP9GisrJfJO7_6IYiovEBBaAKNz9kUeVCPhgupX2QKAw7u7qqv5N5-zG1oYqaCD4zT/exec';
 let currentPlan = 'free';
 let currentNotif = 'email';
 let selectedEvents = new Set();

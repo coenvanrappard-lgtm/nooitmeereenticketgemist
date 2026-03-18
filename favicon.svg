@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="30" fill="#f04e0f"/>
+  <!-- Whistle body -->
+  <path d="M14 26 C14 23 16 21 20 21 L38 21 C42 21 44 23 44 26 L44 34 C44 37 41 39 37 39 L20 39 C16 39 14 37 14 34 Z" fill="white"/>
+  <!-- Mouthpiece -->
+  <rect x="42" y="25" width="10" height="8" rx="3" fill="white"/>
+  <!-- Air slot -->
+  <rect x="18" y="25" width="16" height="5" rx="2" fill="#f04e0f"/>
+  <!-- Ball hole -->
+  <circle cx="34" cy="30" r="3.5" fill="#f04e0f"/>
+</svg>

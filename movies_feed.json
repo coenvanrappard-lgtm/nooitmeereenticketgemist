@@ -1,0 +1,87 @@
+{
+  "cineville": [
+    {
+      "title": "Amrum",
+      "meta": "2025 · 93 min",
+      "description": "One of this week's editor-backed Cineville picks (2025, 93 minutes).",
+      "image": "https://culturekit-assets.imgix.net/1/assets/c7e20aee-1c3c-45d5-aae5-bda858b2d4fe.jpg?w=112&auto=format",
+      "link": "https://www.cineville.nl/films/amrum",
+      "link_label": "View on Cineville",
+      "imdb": "IMDb 7.2",
+      "imdb_link": "https://www.imdb.com/title/tt22507216/"
+    },
+    {
+      "title": "Dead Man's Wire",
+      "meta": "2025 · 105 min",
+      "description": "One of this week's editor-backed Cineville picks (2025, 105 minutes).",
+      "image": "https://culturekit-assets.imgix.net/1/assets/661ed149-0436-41f0-b42e-321765a85c6f.jpg?w=112&auto=format",
+      "link": "https://www.cineville.nl/films/dead-mans-wire",
+      "link_label": "View on Cineville",
+      "imdb": "",
+      "imdb_link": ""
+    },
+    {
+      "title": "H Is for Hawk",
+      "meta": "2025 · 115 min",
+      "description": "One of this week's editor-backed Cineville picks (2025, 115 minutes).",
+      "image": "https://culturekit-assets.imgix.net/1/assets/31434ef4-9a10-4c82-a8f0-f127fa86442e.jpg?w=112&auto=format",
+      "link": "https://www.cineville.nl/films/h-is-for-hawk",
+      "link_label": "View on Cineville",
+      "imdb": "IMDb 6.5",
+      "imdb_link": "https://www.imdb.com/title/tt10329560/"
+    },
+    {
+      "title": "Il conformista (re-release)",
+      "meta": "1970 · 111 min",
+      "description": "One of this week's editor-backed Cineville picks (1970, 111 minutes).",
+      "image": "https://culturekit-assets.imgix.net/1/assets/963b54ac-bd3e-4b7a-a873-eab71d47be84.jpg?w=112&auto=format",
+      "link": "https://www.cineville.nl/films/il-conformista",
+      "link_label": "View on Cineville",
+      "imdb": "",
+      "imdb_link": ""
+    }
+  ],
+  "trending": [
+    {
+      "title": "Project Hail Mary",
+      "meta": "2026 · 157 min",
+      "description": "Science teacher Ryland Grace wakes up on a spaceship light years from home with no recollection of who he is or how he got there. As his memory returns, he begins to uncover his mission: solve the riddle of the mysterious substance causing the sun to die out. He must call on his scientific knowledge and unorthodox ideas to save everything on Earth from extinction… but an unexpected friendship means he may not have to do it alone.",
+      "image": "https://image.tmdb.org/t/p/w200/huVzcVrlK8aiLd240ienleODvWl.jpg",
+      "link": "https://www.pathe.nl/en/films/project-hail-mary-48901",
+      "link_label": "View at Pathé",
+      "imdb": "",
+      "imdb_link": "https://www.imdb.com/title/tt12042730/"
+    },
+    {
+      "title": "Hamnet",
+      "meta": "2025 · 126 min",
+      "description": "The powerful story of love and loss that inspired the creation of Shakespeare's timeless masterpiece, Hamlet.",
+      "image": "https://image.tmdb.org/t/p/w200/vbeyOZm2bvBXcbgPD3v6o94epPX.jpg",
+      "link": "https://www.pathe.nl/en/films/hamnet-48074",
+      "link_label": "View at Pathé",
+      "imdb": "IMDb 7.9",
+      "imdb_link": "https://www.imdb.com/title/tt14905854/"
+    },
+    {
+      "title": "Dhurandhar: The Revenge",
+      "meta": "2026 · 235 min",
+      "description": "As rival gangs, corrupt officials and a ruthless Major Iqbal close in, Hamza's mission for his country spirals into a bloody personal war where the line between patriot and monster disappears in the streets of Lyari.",
+      "image": "https://image.tmdb.org/t/p/w200/ov8vrRLZGoXHpYjSY9Vpv1tHJX7.jpg",
+      "link": "https://www.pathe.nl/en/films/dhurandhar-the-revenge-51973",
+      "link_label": "View at Pathé",
+      "imdb": "",
+      "imdb_link": "https://www.imdb.com/title/tt39139925/"
+    },
+    {
+      "title": "Scream 7",
+      "meta": "2026 · 114 min",
+      "description": "When a new Ghostface killer emerges in the quiet town where Sidney Prescott has built a new life, her darkest fears are realized as her daughter becomes the next target. Determined to protect her family, Sidney must face the horrors of her past to put an end to the bloodshed once and for all.",
+      "image": "https://image.tmdb.org/t/p/w200/jjyuk0edLiW8vOSnlfwWCCLpbh5.jpg",
+      "link": "https://www.pathe.nl/en/films/scream-7-48091",
+      "link_label": "View at Pathé",
+      "imdb": "IMDb 5.8",
+      "imdb_link": "https://www.imdb.com/title/tt27047903/"
+    }
+  ],
+  "generated_at": "2026-03-19T18:30:19.898404+00:00"
+}

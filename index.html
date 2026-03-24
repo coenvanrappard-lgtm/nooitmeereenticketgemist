@@ -25,6 +25,7 @@
       --golf: #2d5a27;
       --rugby: #7d1c35;
       --hockey: #1c3a7d;
+      --darts: #5c1a1a;
       --green: #00a86b;
     }
 
@@ -140,6 +141,7 @@
     .dot-golf { background: var(--golf); }
     .dot-rugby { background: var(--rugby); }
     .dot-hockey { background: var(--hockey); }
+    .dot-darts { background: var(--darts); }
 
     /* How */
     .how { padding: 5.5rem 0; }
@@ -349,6 +351,9 @@
     <div class="event-pill"><span class="event-pill-dot dot-hockey"></span><span class="event-pill-name">Hockey WK</span><span class="event-pill-sport">Hockey</span></div>
     <div class="event-pill"><span class="event-pill-dot dot-golf"></span><span class="event-pill-name">KLM Open</span><span class="event-pill-sport">Golf</span></div>
     <div class="event-pill"><span class="event-pill-dot dot-tennis"></span><span class="event-pill-name">Rotterdam Open</span><span class="event-pill-sport">Tennis</span></div>
+    <div class="event-pill"><span class="event-pill-dot dot-darts"></span><span class="event-pill-name">WK Darts</span><span class="event-pill-sport">Darts</span></div>
+    <div class="event-pill"><span class="event-pill-dot dot-darts"></span><span class="event-pill-name">Premier League Darts</span><span class="event-pill-sport">Darts</span></div>
+    <div class="event-pill"><span class="event-pill-dot dot-darts"></span><span class="event-pill-name">Dutch Open</span><span class="event-pill-sport">Darts</span></div>
     <!-- duplicate for seamless loop -->
     <div class="event-pill"><span class="event-pill-dot dot-tennis"></span><span class="event-pill-name">French Open</span><span class="event-pill-sport">Tennis</span></div>
     <div class="event-pill"><span class="event-pill-dot dot-football"></span><span class="event-pill-name">WK 2026</span><span class="event-pill-sport">Football</span></div>
@@ -360,6 +365,9 @@
     <div class="event-pill"><span class="event-pill-dot dot-hockey"></span><span class="event-pill-name">Hockey WK</span><span class="event-pill-sport">Hockey</span></div>
     <div class="event-pill"><span class="event-pill-dot dot-golf"></span><span class="event-pill-name">KLM Open</span><span class="event-pill-sport">Golf</span></div>
     <div class="event-pill"><span class="event-pill-dot dot-tennis"></span><span class="event-pill-name">Rotterdam Open</span><span class="event-pill-sport">Tennis</span></div>
+    <div class="event-pill"><span class="event-pill-dot dot-darts"></span><span class="event-pill-name">WK Darts</span><span class="event-pill-sport">Darts</span></div>
+    <div class="event-pill"><span class="event-pill-dot dot-darts"></span><span class="event-pill-name">Premier League Darts</span><span class="event-pill-sport">Darts</span></div>
+    <div class="event-pill"><span class="event-pill-dot dot-darts"></span><span class="event-pill-name">Dutch Open</span><span class="event-pill-sport">Darts</span></div>
   </div>
 </div>
 <div class="divider"></div>
@@ -409,6 +417,12 @@
           <div class="sport-img-label">Hockey</div>
         </div>
         <div class="sport-card-body"><div class="sport-events">EK · WK · Hoofdklasse Play-offs</div></div>
+      </div>
+      <div class="sport-card darts">
+        <div class="sport-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/4/41/Michael_van_Gerwen_at_the_PDC_World_Darts_Championship_2014.jpg')">
+          <div class="sport-img-label">Darts</div>
+        </div>
+        <div class="sport-card-body"><div class="sport-events">WK · Premier League · World Matchplay · Grand Slam · Dutch Open</div></div>
       </div>
     </div>
   </div>
@@ -528,6 +542,17 @@
               <div class="event-toggle" data-id="hockey_ek" onclick="toggleEvent(this)">Hockey EK</div>
               <div class="event-toggle" data-id="hockey_wk" onclick="toggleEvent(this)">Hockey WK</div>
               <div class="event-toggle" data-id="hockey_hoofdklasse" onclick="toggleEvent(this)">Hoofdklasse Play-offs</div>
+            </div>
+          </div>
+          <div class="sport-group">
+            <div class="sport-header" onclick="toggleSport(this)">Darts <span class="chevron">▼</span></div>
+            <div class="sport-events-list" style="display:none;">
+              <div class="event-toggle" data-id="pdc_world_championship" onclick="toggleEvent(this)">WK Darts (Ally Pally)</div>
+              <div class="event-toggle" data-id="premier_league_darts_amsterdam" onclick="toggleEvent(this)">Premier League Darts Amsterdam</div>
+              <div class="event-toggle" data-id="world_matchplay" onclick="toggleEvent(this)">World Matchplay</div>
+              <div class="event-toggle" data-id="world_grand_prix" onclick="toggleEvent(this)">World Grand Prix</div>
+              <div class="event-toggle" data-id="grand_slam_of_darts" onclick="toggleEvent(this)">Grand Slam of Darts</div>
+              <div class="event-toggle" data-id="dutch_open_darts" onclick="toggleEvent(this)">Dutch Open</div>
             </div>
           </div>
           <div class="sport-group">

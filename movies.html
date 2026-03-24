@@ -210,7 +210,7 @@
     .card-meta { font-size: 12px; color: var(--subtle); }
     .card-desc {
       font-size: 13px; color: var(--muted); font-weight: 300; line-height: 1.6;
-      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+      display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;
       flex: 1;
     }
     .card-actions {
@@ -273,7 +273,7 @@
     <nav class="nav">
       <a class="nav-logo" href="index.html">
         <img src="logo.png" alt="Fluitsignaal" />
-        <span class="nav-logo-text">Fluitsignaal</span>
+        <span class="nav-logo-text">Fluitsignaal <em style="font-style:italic;color:var(--orange);">Movies</em></span>
       </a>
       <div class="nav-links">
         <a href="index.html#how" class="nav-link">How it works</a>
@@ -317,18 +317,18 @@
 <!-- Content -->
 <div class="site">
 
-  <section class="section" id="section-cineville">
-    <p class="section-label">Cineville picks</p>
-    <h2 class="section-title">Editor recommendations</h2>
-    <p class="section-sub">Hand-picked by the Cineville team — the films worth going to the cinema for this week.</p>
-    <div class="movie-grid" id="grid-cineville"></div>
-  </section>
-
   <section class="section" id="section-trending">
     <p class="section-label">Trending at Pathé</p>
     <h2 class="section-title">What people are watching</h2>
     <p class="section-sub">The most-watched films globally this week, with Pathé links where available.</p>
     <div class="movie-grid" id="grid-trending"></div>
+  </section>
+
+  <section class="section" id="section-cineville">
+    <p class="section-label">Cineville picks</p>
+    <h2 class="section-title">Editor recommendations</h2>
+    <p class="section-sub">Hand-picked by the Cineville team — the films worth going to the cinema for this week.</p>
+    <div class="movie-grid" id="grid-cineville"></div>
   </section>
 
   <div class="bottom-strip">
@@ -409,7 +409,7 @@
             ${imdbBadge}
           </div>
           ${m.meta ? `<div class="card-meta">${esc(m.meta)}</div>` : ""}
-          ${m.description ? `<p class="card-desc">${esc(short(m.description, 110))}</p>` : ""}
+          ${m.description ? `<p class="card-desc">${esc(short(m.description, 240))}</p>` : ""}
           <div class="card-actions">
             ${trailerBtn}
             ${sourceBtn}

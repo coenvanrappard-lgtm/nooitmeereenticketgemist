@@ -195,17 +195,20 @@
 
     /* Pricing */
     .pricing { padding: 5.5rem 0; }
-    .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 3rem; }
-    .plan { border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; background: var(--white); }
-    .plan.featured { border: 2px solid var(--orange); background: var(--orange-light); }
-    .plan-badge { display: inline-block; background: var(--orange); color: #fff; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-bottom: 1rem; }
-    .plan-name { font-size: 15px; font-weight: 600; }
-    .plan-price { font-family: 'DM Serif Display', serif; font-size: 40px; line-height: 1.1; margin: 0.75rem 0 0.25rem; color: var(--body); }
-    .plan-period { font-size: 13px; color: var(--muted); margin-bottom: 1.5rem; }
-    .plan-features { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-    .plan-features li { font-size: 13px; color: var(--muted); display: flex; gap: 8px; font-weight: 300; align-items: flex-start; }
-    .plan-features li::before { content: '✓'; color: var(--green); font-size: 12px; font-weight: 600; flex-shrink: 0; margin-top: 1px; }
-    .plan.featured .plan-features li::before { color: var(--orange); }
+    .free-banner { border: 2px solid var(--orange); border-radius: 16px; padding: 2.5rem; background: var(--orange-light); margin-top: 3rem; display: grid; grid-template-columns: 1fr auto; gap: 2.5rem; align-items: center; }
+    .free-banner-left {}
+    .free-banner-price { font-family: 'DM Serif Display', serif; font-size: 64px; line-height: 1; color: var(--orange); letter-spacing: -2px; margin-bottom: 0.25rem; }
+    .free-banner-label { font-size: 13px; color: var(--muted); margin-bottom: 1.5rem; }
+    .free-features { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 2rem; }
+    .free-features li { font-size: 14px; color: var(--body); display: flex; gap: 8px; font-weight: 400; align-items: flex-start; }
+    .free-features li::before { content: '✓'; color: var(--orange); font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .donate-card { border: 1px solid var(--orange-mid); border-radius: 14px; padding: 2rem; background: #fff; text-align: center; min-width: 220px; }
+    .donate-card-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+    .donate-card-title { font-family: 'DM Serif Display', serif; font-size: 22px; line-height: 1.2; margin-bottom: 0.75rem; letter-spacing: -0.3px; }
+    .donate-card-body { font-size: 13px; color: var(--muted); line-height: 1.65; font-weight: 300; margin-bottom: 1.5rem; }
+    .btn-donate { display: inline-block; background: var(--orange); color: #fff; border: none; padding: 13px 24px; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; transition: opacity 0.15s; width: 100%; text-align: center; }
+    .btn-donate:hover { opacity: 0.88; }
+    @media (max-width: 767px) { .free-banner { grid-template-columns: 1fr; } .free-features { grid-template-columns: 1fr; } }
 
     /* Signup */
     .signup { padding: 5.5rem 0 6rem; background: var(--dark); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; }
@@ -300,7 +303,7 @@
 
 <!-- Urgency banner -->
 <div class="urgency-banner" id="urgency-banner">
-  Multiple events on sale soon — sign up to know exactly when
+  Multiple events on sale soon — sign up free to know exactly when
   <button class="urgency-dismiss" onclick="document.getElementById('urgency-banner').style.display='none'" aria-label="Dismiss">×</button>
 </div>
 
@@ -327,9 +330,9 @@
   </a>
   <div class="site">
     <section class="hero">
-      <p class="hero-eyebrow">Never miss a ticket again</p>
+      <p class="hero-eyebrow">Free forever · No credit card needed</p>
       <h1 class="hero-title">Tickets sell out.<br><em>Not for you.</em></h1>
-      <p class="hero-sub">Get email alerts the moment tickets go on sale for the world's biggest sporting events — grand slams, World Cup, Ryder Cup, and more.</p>
+      <p class="hero-sub">Get email alerts the moment tickets go on sale for the world's biggest sporting events — grand slams, World Cup, Ryder Cup, and more. Completely free to use.</p>
       <div class="hero-actions">
         <button class="btn-primary" onclick="document.getElementById('signup-form').scrollIntoView({behavior:'smooth'})">Start for free</button>
         <button class="btn-secondary" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">See how it works</button>
@@ -441,19 +444,24 @@
 <div class="site">
   <section class="pricing" id="pricing">
     <p class="section-label">Pricing</p>
-    <div class="plans">
-      <div class="plan">
-        <div class="plan-name">Free</div>
-        <div class="plan-price">€0</div>
-        <div class="plan-period">free to use</div>
-        <ul class="plan-features"><li>Weekly digest — all events</li><li>Email alerts</li><li>Day-before &amp; hour reminders</li></ul>
+    <div class="free-banner">
+      <div class="free-banner-left">
+        <div class="free-banner-price">€0</div>
+        <div class="free-banner-label">Free forever. No credit card. No catch.</div>
+        <ul class="free-features">
+          <li>Weekly digest — all events</li>
+          <li>Email alerts for every sport</li>
+          <li>Day-before &amp; hour-of reminders</li>
+          <li>Darts, tennis, football, golf &amp; more</li>
+          <li>Lottery &amp; ballot registration alerts</li>
+          <li>Fluitsignaal Movies picks</li>
+        </ul>
       </div>
-      <div class="plan featured">
-        <div class="plan-badge">Most popular</div>
-        <div class="plan-name">Pro</div>
-        <div class="plan-price">€7</div>
-        <div class="plan-period">per month</div>
-        <ul class="plan-features"><li>Unlimited events</li><li>Email + SMS alerts</li><li>All reminder types</li><li>Lottery registration reminders</li></ul>
+      <div class="donate-card">
+        <div class="donate-card-label">Enjoying it?</div>
+        <div class="donate-card-title">Support Fluitsignaal</div>
+        <div class="donate-card-body">This runs on coffee and stubbornness. If it's saved you from missing a ticket sale, a small contribution goes a long way.</div>
+        <a class="btn-donate" href="https://ko-fi.com/fluitsignaal" target="_blank" rel="noreferrer">☕ Buy me a coffee</a>
       </div>
     </div>
   </section>
@@ -463,7 +471,7 @@
   <div class="signup-inner">
     <div class="signup-box">
       <h2 class="signup-title">Start getting alerts</h2>
-      <p class="signup-sub">Choose your plan, pick your events, and we'll notify you the moment tickets go on sale.</p>
+      <p class="signup-sub">Pick your events and we'll notify you the moment tickets go on sale. Completely free — always.</p>
       <div class="signup-form">
         <input type="text" id="signup-name" placeholder="Your name" />
         <div class="notif-toggle">
@@ -473,10 +481,6 @@
         </div>
         <input type="email" id="signup-email" placeholder="Your email address" />
         <input type="tel" id="signup-phone" placeholder="Your phone number (e.g. +31612345678)" style="display:none;" />
-        <div class="plan-toggle">
-          <button class="plan-btn active" id="plan-free" onclick="selectPlan('free')">Free</button>
-          <button class="plan-btn" id="plan-pro" onclick="selectPlan('pro')">Pro — €7/mo, unlimited</button>
-        </div>
         <div class="reminders-section">
           <div style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.8);margin-bottom:8px;">Choose your alerts</div>
           <div class="reminder-options">
@@ -606,8 +610,8 @@
         <div class="signup-aside-item">
           <div class="signup-aside-icon">🎟</div>
           <div>
-            <div class="signup-aside-item-title">Curated for the Netherlands</div>
-            <div class="signup-aside-item-body">Tennis, football, golf, rugby, hockey, and more — events you can actually get to.</div>
+            <div class="signup-aside-item-title">Completely free, forever</div>
+            <div class="signup-aside-item-body">No subscription, no credit card, no trial period. If it helps you get a ticket, that's all we need.</div>
           </div>
         </div>
       </div>
@@ -631,8 +635,8 @@
         <div class="faq-a">We manually track sale dates for each event — monitoring official ticket pages, club announcements, and federation websites. When a date is confirmed we add it to our system, which then sends alerts at the right time.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Is the free plan actually free? <span class="faq-chevron">▼</span></button>
-        <div class="faq-a">Yes. The free plan gives you the weekly digest and email alerts with no credit card required. Pro adds SMS alerts and more reminder types for €7/month.</div>
+        <button class="faq-q" onclick="toggleFaq(this)">Is it really free? <span class="faq-chevron">▼</span></button>
+        <div class="faq-a">Yes, completely. There is no paid plan, no trial, no credit card — everything is free. If you find it useful and want to support it, there's a donation link on the site, but that's entirely optional.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">How many emails will I receive? <span class="faq-chevron">▼</span></button>
@@ -663,7 +667,8 @@
     <div class="footer-links">
       <a href="#signup-form" class="footer-link" onclick="document.getElementById('signup-form').scrollIntoView({behavior:'smooth'});return false;">Sign up</a>
       <button class="footer-link" onclick="openAccountModal()">My account</button>
-      <span class="footer-note">Amsterdam · 2026</span>
+      <a href="https://ko-fi.com/fluitsignaal" class="footer-link" target="_blank" rel="noreferrer" style="color:var(--orange);">☕ Support</a>
+      <span class="footer-note">Amsterdam · 2026 · Free forever</span>
     </div>
   </footer>
 </div>

@@ -3,62 +3,470 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fluitsignaal Movies</title>
+  <title>Movies — Fluitsignaal</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #f04e0f;
+      --orange-light: #fff2ed;
+      --dark: #0d1117;
+      --body: #1a1a1a;
+      --muted: #666;
+      --subtle: #999;
+      --border: #e5e5e5;
+      --bg: #faf9f7;
+      --white: #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; color: var(--body); background: var(--bg); }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+
+    .site { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+    /* ── Nav ── */
+    .nav-wrap {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 10;
+    }
+    .nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 0;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 9px; text-decoration: none; color: var(--body); }
+    .nav-logo img { height: 34px; width: auto; object-fit: contain; margin-top: -5px; }
+    .nav-logo-text { font-family: 'DM Serif Display', serif; font-size: 22px; letter-spacing: -0.3px; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-link { font-size: 14px; color: var(--muted); text-decoration: none; transition: color 0.15s; }
+    .nav-link:hover { color: var(--body); }
+    .nav-link.active { color: var(--body); font-weight: 500; }
+    .nav-cta {
+      background: var(--orange); color: #fff; border: none;
+      padding: 10px 20px; border-radius: 8px;
+      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+      cursor: pointer; text-decoration: none; transition: opacity 0.15s;
+    }
+    .nav-cta:hover { opacity: 0.88; }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, var(--dark) 0%, #1a0a00 100%);
+      padding: 5rem 0 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 65% 50%, rgba(240,78,15,0.2) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--orange); margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--orange); }
+    .hero-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(40px, 5.5vw, 64px);
+      line-height: 1.06; letter-spacing: -1.5px;
+      color: #fff; margin-bottom: 1rem;
+    }
+    .hero-title em { font-style: italic; color: var(--orange); }
+    .hero-sub {
+      font-size: 17px; font-weight: 300; line-height: 1.75;
+      color: rgba(255,255,255,0.55); max-width: 520px; margin-bottom: 2rem;
+    }
+    .hero-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+    .hero-stat { color: rgba(255,255,255,0.4); font-size: 13px; font-weight: 300; }
+    .hero-stat strong {
+      display: block; font-size: 24px; font-weight: 500;
+      color: rgba(255,255,255,0.9); letter-spacing: -0.5px; margin-bottom: 2px;
+    }
+
+    /* ── Filter bar ── */
+    .filter-wrap {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 73px; z-index: 9;
+    }
+    .filter-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; padding: 0.85rem 0;
+    }
+    .filter-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .filter-tab {
+      padding: 7px 16px; border-radius: 999px;
+      font-size: 13px; font-weight: 500;
+      border: 1px solid var(--border); background: transparent;
+      cursor: pointer; color: var(--muted);
+      transition: all 0.15s; font-family: 'DM Sans', sans-serif;
+    }
+    .filter-tab:hover { border-color: #bbb; color: var(--body); }
+    .filter-tab.active { background: var(--body); border-color: var(--body); color: #fff; }
+    .filter-updated { font-size: 12px; color: var(--subtle); white-space: nowrap; }
+
+    /* ── Sections ── */
+    .section { padding: 3.5rem 0 0; }
+    .section-label {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--orange); margin-bottom: 0.75rem;
+    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(26px, 3.5vw, 36px);
+      letter-spacing: -0.8px; margin-bottom: 0.5rem;
+    }
+    .section-sub {
+      font-size: 15px; color: var(--muted); font-weight: 300;
+      line-height: 1.65; margin-bottom: 2rem; max-width: 540px;
+    }
+
+    /* ── Movie grid ── */
+    .movie-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    /* ── Movie card ── */
+    .movie-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    .movie-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 44px rgba(0,0,0,0.11);
+    }
+
+    /* Poster */
+    .card-poster {
+      position: relative;
+      aspect-ratio: 2 / 3;
+      overflow: hidden;
+      background: #181818;
+    }
+    .card-poster img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+    .movie-card:hover .card-poster img { transform: scale(1.04); }
+    .card-poster-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      color: #444; font-size: 13px;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    }
+    .card-poster-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 55%);
+      display: flex; align-items: flex-end; padding: 14px;
+      opacity: 0; transition: opacity 0.2s ease;
+    }
+    .movie-card:hover .card-poster-overlay { opacity: 1; }
+    .overlay-trailer {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--orange); color: #fff;
+      padding: 8px 14px; border-radius: 999px;
+      font-size: 12px; font-weight: 500; text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .overlay-trailer:hover { opacity: 0.88; }
+
+    /* Body */
+    .card-body {
+      padding: 14px 15px 16px;
+      flex: 1; display: flex; flex-direction: column; gap: 7px;
+    }
+    .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+    .card-title {
+      font-size: 14px; font-weight: 500; line-height: 1.35; letter-spacing: -0.1px;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .card-title a { text-decoration: none; color: var(--body); transition: color 0.15s; }
+    .card-title a:hover { color: var(--orange); }
+    .imdb-badge {
+      flex-shrink: 0; display: inline-block;
+      background: #f5c518; color: #000;
+      padding: 3px 7px; border-radius: 5px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.01em;
+      text-decoration: none; white-space: nowrap; line-height: 1.5;
+      transition: opacity 0.15s;
+    }
+    .imdb-badge:hover { opacity: 0.8; }
+    .card-meta { font-size: 12px; color: var(--subtle); }
+    .card-desc {
+      font-size: 13px; color: var(--muted); font-weight: 300; line-height: 1.6;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+      flex: 1;
+    }
+    .card-actions {
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 2px;
+    }
+    .btn-trailer {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: var(--dark); color: #fff;
+      padding: 7px 12px; border-radius: 8px;
+      font-size: 12px; font-weight: 500; text-decoration: none;
+      transition: background 0.15s;
+    }
+    .btn-trailer:hover { background: #2a2a2a; }
+    .link-source {
+      font-size: 12px; font-weight: 500; color: var(--muted);
+      text-decoration: none; transition: color 0.15s;
+    }
+    .link-source:hover { color: var(--orange); }
+
+    /* ── Bottom strip ── */
+    .bottom-strip { padding: 3.5rem 0 4.5rem; text-align: center; }
+    .bottom-strip p { font-size: 15px; color: var(--muted); margin-bottom: 1rem; }
+    .bottom-strip a { color: var(--orange); font-weight: 500; text-decoration: none; }
+    .bottom-strip a:hover { text-decoration: underline; }
+
+    /* ── Footer ── */
+    .footer { border-top: 1px solid var(--border); padding: 2rem 0; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .footer-logo { font-family: 'DM Serif Display', serif; font-size: 18px; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-link { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.15s; }
+    .footer-link:hover { color: var(--body); }
+    .footer-note { font-size: 12px; color: var(--subtle); }
+
+    /* ── Empty / loading ── */
+    .empty-state { color: var(--subtle); font-size: 15px; padding: 2rem 0; }
+
+    /* ── Responsive ── */
+    @media (max-width: 1050px) {
+      .movie-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 720px) {
+      .movie-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+      .hero { padding: 3.5rem 0 3rem; }
+      .hero-stats { gap: 1.75rem; }
+      .filter-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 420px) {
+      .movie-grid { grid-template-columns: 1fr; }
+      .site { padding: 0 1.25rem; }
+      .nav { padding: 1.25rem 0; }
+    }
+  </style>
 </head>
-<body data-page="movies">
-  <div class="site-shell">
-    <header class="topbar">
-      <a class="brand" href="index.html">
-        <img src="https://coenvanrappard-lgtm.github.io/Fluitsignaal/logo.png" alt="Fluitsignaal logo" />
-        <div>
-          <div class="brand-wordmark">Fluitsignaal</div>
-          <div class="brand-tag">Movies</div>
-        </div>
+<body>
+
+<!-- Nav -->
+<div class="nav-wrap">
+  <div class="site">
+    <nav class="nav">
+      <a class="nav-logo" href="index.html">
+        <img src="logo.png" alt="Fluitsignaal" />
+        <span class="nav-logo-text">Fluitsignaal</span>
       </a>
-      <nav class="topnav">
-        <a href="index.html">Home</a>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="tickets.html">Tickets</a>
-        <a class="active" href="movies.html">Movies</a>
-        <a href="amsterdam.html">Amsterdam this weekend</a>
-      </nav>
-    </header>
-
-    <section class="page-hero">
-      <div class="eyebrow">Movies</div>
-      <h1>A proper home for the film side of Fluitsignaal.</h1>
-      <p>The film page should feel curated, not bolted on. Cineville picks and trending films live here on their own timing, with enough room to browse instead of being folded into the ticket briefing.</p>
-      <div class="page-subnav">
-        <a href="#cineville">Cineville picks</a>
-        <a href="#trending">Trending now</a>
+      <div class="nav-links">
+        <a href="index.html#how" class="nav-link">How it works</a>
+        <a href="index.html#sports" class="nav-link">Events</a>
+        <a href="movies.html" class="nav-link active">Movies</a>
+        <a href="index.html#pricing" class="nav-link">Pricing</a>
+        <a href="index.html" class="nav-cta">My account</a>
       </div>
-      <div class="summary-strip" id="movies-summary"></div>
-    </section>
-
-    <section class="section" id="cineville">
-      <div class="section-heading">
-        <div class="eyebrow">Cineville picks</div>
-        <h2>What looks strongest from the Cineville side.</h2>
-      </div>
-      <div class="movie-list" id="movies-cineville"></div>
-    </section>
-
-    <section class="section" id="trending">
-      <div class="section-heading">
-        <div class="eyebrow">Trending now</div>
-        <h2>The films getting the most attention this week.</h2>
-      </div>
-      <div class="movie-list" id="movies-trending"></div>
-    </section>
-
-    <section class="section">
-      <div class="callout" id="movies-callout"></div>
-    </section>
+    </nav>
   </div>
-  <script src="site.js"></script>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="site hero-inner">
+    <p class="hero-eyebrow">What's on this week</p>
+    <h1 class="hero-title">The best films in<br><em>cinema right now.</em></h1>
+    <p class="hero-sub">Cineville editor picks and what's trending at Pathé — updated every week, all in one place.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong id="stat-cineville">—</strong>Cineville picks</div>
+      <div class="hero-stat"><strong id="stat-trending">—</strong>Trending now</div>
+      <div class="hero-stat"><strong id="stat-updated">—</strong>Last updated</div>
+    </div>
+  </div>
+</section>
+
+<!-- Filter bar -->
+<div class="filter-wrap">
+  <div class="site">
+    <div class="filter-inner">
+      <div class="filter-tabs">
+        <button class="filter-tab active" onclick="setFilter('all', this)">All films</button>
+        <button class="filter-tab" onclick="setFilter('cineville', this)">Cineville picks</button>
+        <button class="filter-tab" onclick="setFilter('trending', this)">Trending at Pathé</button>
+      </div>
+      <span class="filter-updated" id="filter-updated"></span>
+    </div>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="site">
+
+  <section class="section" id="section-cineville">
+    <p class="section-label">Cineville picks</p>
+    <h2 class="section-title">Editor recommendations</h2>
+    <p class="section-sub">Hand-picked by the Cineville team — the films worth going to the cinema for this week.</p>
+    <div class="movie-grid" id="grid-cineville"></div>
+  </section>
+
+  <section class="section" id="section-trending">
+    <p class="section-label">Trending at Pathé</p>
+    <h2 class="section-title">What people are watching</h2>
+    <p class="section-sub">The most-watched films globally this week, with Pathé links where available.</p>
+    <div class="movie-grid" id="grid-trending"></div>
+  </section>
+
+  <div class="bottom-strip">
+    <p>Fluitsignaal also sends weekly ticket alerts for tennis, football, golf, rugby and more.</p>
+    <a href="index.html">Back to Fluitsignaal →</a>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="site">
+    <div class="footer-inner">
+      <span class="footer-logo">Fluitsignaal</span>
+      <div class="footer-links">
+        <a href="index.html" class="footer-link">Home</a>
+        <a href="index.html#sports" class="footer-link">Events</a>
+        <a href="movies.html" class="footer-link">Movies</a>
+        <a href="index.html#pricing" class="footer-link">Pricing</a>
+      </div>
+      <span class="footer-note">Amsterdam · 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function esc(s) {
+    return String(s || "")
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  function short(text, max) {
+    const t = (text || "").trim();
+    return t.length <= max ? t : t.slice(0, max).replace(/[ ,;:-]+$/, "") + "…";
+  }
+
+  function playIcon() {
+    return `<svg width="9" height="11" viewBox="0 0 9 11" fill="none" aria-hidden="true"><path d="M0.5 1l8 4.5-8 4.5V1z" fill="currentColor"/></svg>`;
+  }
+
+  function movieCard(m) {
+    const poster = m.image
+      ? `<img src="${esc(m.image)}" alt="${esc(m.title)}" loading="lazy" />`
+      : `<div class="card-poster-placeholder">No poster</div>`;
+
+    const overlayTrailer = m.trailer_url
+      ? `<div class="card-poster-overlay">
+           <a class="overlay-trailer" href="${esc(m.trailer_url)}" target="_blank" rel="noreferrer">
+             ${playIcon()} Watch trailer
+           </a>
+         </div>`
+      : "";
+
+    const imdbBadge = m.imdb
+      ? `<a class="imdb-badge" href="${esc(m.imdb_link || "#")}" target="_blank" rel="noreferrer" title="View on IMDb">${esc(m.imdb)}</a>`
+      : "";
+
+    const trailerBtn = m.trailer_url
+      ? `<a class="btn-trailer" href="${esc(m.trailer_url)}" target="_blank" rel="noreferrer">${playIcon()} Trailer</a>`
+      : "";
+
+    const sourceBtn = m.link
+      ? `<a class="link-source" href="${esc(m.link)}" target="_blank" rel="noreferrer">${esc(m.link_label || "More info")} →</a>`
+      : "";
+
+    return `
+      <article class="movie-card">
+        <div class="card-poster">
+          <a href="${esc(m.link || "#")}" target="_blank" rel="noreferrer" tabindex="-1" aria-label="${esc(m.title)}">
+            ${poster}
+          </a>
+          ${overlayTrailer}
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3 class="card-title"><a href="${esc(m.link || "#")}" target="_blank" rel="noreferrer">${esc(m.title)}</a></h3>
+            ${imdbBadge}
+          </div>
+          ${m.meta ? `<div class="card-meta">${esc(m.meta)}</div>` : ""}
+          ${m.description ? `<p class="card-desc">${esc(short(m.description, 110))}</p>` : ""}
+          <div class="card-actions">
+            ${trailerBtn}
+            ${sourceBtn}
+          </div>
+        </div>
+      </article>`;
+  }
+
+  function render(gridId, movies) {
+    const el = document.getElementById(gridId);
+    el.innerHTML = movies.length
+      ? movies.map(movieCard).join("")
+      : `<p class="empty-state">No films to show right now.</p>`;
+  }
+
+  function setFilter(filter, btn) {
+    document.querySelectorAll(".filter-tab").forEach(t => t.classList.remove("active"));
+    btn.classList.add("active");
+    const cv = document.getElementById("section-cineville");
+    const tr = document.getElementById("section-trending");
+    cv.style.display = filter === "trending" ? "none" : "";
+    tr.style.display = filter === "cineville" ? "none" : "";
+  }
+
+  async function init() {
+    try {
+      const res = await fetch("movies_feed.json");
+      if (!res.ok) throw new Error();
+      const feed = await res.json();
+
+      const cineville = feed.cineville || [];
+      const trending  = feed.trending  || [];
+
+      document.getElementById("stat-cineville").textContent = cineville.length;
+      document.getElementById("stat-trending").textContent  = trending.length;
+
+      if (feed.generated_at) {
+        const d = new Date(feed.generated_at);
+        const label = d.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+        document.getElementById("stat-updated").textContent   = label;
+        document.getElementById("filter-updated").textContent = "Updated " +
+          d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+      } else {
+        document.getElementById("stat-updated").textContent = "Weekly";
+      }
+
+      render("grid-cineville", cineville);
+      render("grid-trending",  trending);
+
+    } catch (_) {
+      render("grid-cineville", []);
+      render("grid-trending",  []);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", init);
+</script>
+
 </body>
 </html>

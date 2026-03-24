@@ -1,0 +1,95 @@
+{
+  "cineville": [
+    {
+      "title": "Amrum",
+      "meta": "2025 · 93 min",
+      "description": "One of this week's editor-backed Cineville picks (2025, 93 minutes).",
+      "image": "https://culturekit-assets.imgix.net/1/assets/c7e20aee-1c3c-45d5-aae5-bda858b2d4fe.jpg?w=112&auto=format",
+      "link": "https://www.cineville.nl/films/amrum",
+      "link_label": "View on Cineville",
+      "imdb": "IMDb 7.2",
+      "imdb_link": "https://www.imdb.com/title/tt22507216/",
+      "trailer_url": "https://www.youtube.com/watch?v=-izT0MKkvZY"
+    },
+    {
+      "title": "Dead Man's Wire",
+      "meta": "2025 · 105 min",
+      "description": "One of this week's editor-backed Cineville picks (2025, 105 minutes).",
+      "image": "https://culturekit-assets.imgix.net/1/assets/661ed149-0436-41f0-b42e-321765a85c6f.jpg?w=112&auto=format",
+      "link": "https://www.cineville.nl/films/dead-mans-wire",
+      "link_label": "View on Cineville",
+      "imdb": "",
+      "imdb_link": "",
+      "trailer_url": null
+    },
+    {
+      "title": "H Is for Hawk",
+      "meta": "2025 · 115 min",
+      "description": "One of this week's editor-backed Cineville picks (2025, 115 minutes).",
+      "image": "https://culturekit-assets.imgix.net/1/assets/31434ef4-9a10-4c82-a8f0-f127fa86442e.jpg?w=112&auto=format",
+      "link": "https://www.cineville.nl/films/h-is-for-hawk",
+      "link_label": "View on Cineville",
+      "imdb": "IMDb 6.5",
+      "imdb_link": "https://www.imdb.com/title/tt10329560/",
+      "trailer_url": "https://www.youtube.com/watch?v=73V6kQfGyt0"
+    },
+    {
+      "title": "Il conformista (re-release)",
+      "meta": "1970 · 111 min",
+      "description": "One of this week's editor-backed Cineville picks (1970, 111 minutes).",
+      "image": "https://culturekit-assets.imgix.net/1/assets/963b54ac-bd3e-4b7a-a873-eab71d47be84.jpg?w=112&auto=format",
+      "link": "https://www.cineville.nl/films/il-conformista",
+      "link_label": "View on Cineville",
+      "imdb": "",
+      "imdb_link": "",
+      "trailer_url": null
+    }
+  ],
+  "trending": [
+    {
+      "title": "Project Hail Mary",
+      "meta": "2026 · 157 min",
+      "description": "Science teacher Ryland Grace wakes up on a spaceship light years from home with no recollection of who he is or how he got there. As his memory returns, he begins to uncover his mission: solve the riddle of the mysterious substance causing the sun to die out. He must call on his scientific knowledge and unorthodox ideas to save everything on Earth from extinction… but an unexpected friendship means he may not have to do it alone.",
+      "image": "https://image.tmdb.org/t/p/w200/yihdXomYb5kTeSivtFndMy5iDmf.jpg",
+      "link": "https://www.pathe.nl/en/films/project-hail-mary-48901",
+      "link_label": "View at Pathé",
+      "imdb": "IMDb 8.5",
+      "imdb_link": "https://www.imdb.com/title/tt12042730/",
+      "trailer_url": "https://www.youtube.com/watch?v=NKYea63tQmI"
+    },
+    {
+      "title": "Send Help",
+      "meta": "2026 · 113 min",
+      "description": "Two colleagues become stranded on a deserted island, the only survivors of a plane crash. On the island, they must overcome past grievances and work together to survive, but ultimately, it's a battle of wills and wits to make it out alive.",
+      "image": "https://image.tmdb.org/t/p/w200/mjkS2iAgWj3ik1DTjvI15nHZ7yl.jpg",
+      "link": "https://www.pathe.nl/en/films/send-help-48086",
+      "link_label": "View at Pathé",
+      "imdb": "IMDb 7.2",
+      "imdb_link": "https://www.imdb.com/title/tt8036976/",
+      "trailer_url": "https://www.youtube.com/watch?v=cOmnmFz_Uzs"
+    },
+    {
+      "title": "Peaky Blinders: The Immortal Man",
+      "meta": "2026 · 112 min",
+      "description": "After his estranged son gets embroiled in a Nazi plot, self-exiled gangster Tommy Shelby must return to Birmingham to save his family — and his nation.",
+      "image": "https://image.tmdb.org/t/p/w200/gRMalasZEzsZi4w2VFuYusfSfqf.jpg",
+      "link": "https://www.imdb.com/title/tt15574124/",
+      "link_label": "View on IMDb",
+      "imdb": "IMDb 7.0",
+      "imdb_link": "https://www.imdb.com/title/tt15574124/",
+      "trailer_url": "https://www.youtube.com/watch?v=lcvUGs3xaDM"
+    },
+    {
+      "title": "GOAT",
+      "meta": "2026 · 100 min",
+      "description": "A small goat with big dreams gets a once-in-a-lifetime shot to join the pros and play roarball, a high-intensity, co-ed, full-contact sport dominated by the fastest, fiercest animals in the world.",
+      "image": "https://image.tmdb.org/t/p/w200/wfuqMlaExcoYiUEvKfVpUTt1v4u.jpg",
+      "link": "https://www.imdb.com/title/tt27613895/",
+      "link_label": "View on IMDb",
+      "imdb": "IMDb 6.9",
+      "imdb_link": "https://www.imdb.com/title/tt27613895/",
+      "trailer_url": "https://www.youtube.com/watch?v=kmY-rYS7yng"
+    }
+  ],
+  "generated_at": "2026-03-24T20:03:35.785131+00:00"
+}

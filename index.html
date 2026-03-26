@@ -172,6 +172,9 @@
     .sports-intro-body { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.75; font-weight: 300; }
     .spotlight-inline { color: #a855f7; font-style: italic; }
     .sports-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 4rem; }
+    .sport-card.spotlight-card { border-color: rgba(168,85,247,0.4); box-shadow: 0 0 0 1px rgba(168,85,247,0.2), 0 0 28px rgba(168,85,247,0.2); }
+    .sport-card.spotlight-card:hover { box-shadow: 0 0 0 1px rgba(168,85,247,0.5), 0 0 40px rgba(168,85,247,0.35), 0 8px 32px rgba(0,0,0,0.4); }
+    .spotlight-card-badge { position: absolute; top: 9px; right: 9px; z-index: 2; background: rgba(168,85,247,0.85); backdrop-filter: blur(6px); color: #fff; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 7px; border-radius: 999px; }
     .sport-card { border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; overflow: hidden; background: rgba(255,255,255,0.05); transition: transform 0.15s, box-shadow 0.15s; }
     .sport-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
     .sport-img { height: 130px; background-size: cover; background-position: center; position: relative; }
@@ -430,7 +433,7 @@
     <p class="section-label">What we cover</p>
     <div class="sports-section-intro">
       <h2 class="sports-intro-title">The biggest ticket moments in sport — and the hidden gems you'd otherwise miss.</h2>
-      <p class="sports-intro-body">We track 22+ events across 6 sports and send you alerts the moment tickets go on sale. Every Monday digest also includes a <span class="spotlight-inline">Spotlight</span> — one event worth going to that's easy to overlook.</p>
+      <p class="sports-intro-body">We track 22+ events across 6 sports and alert you the moment tickets go on sale. Every Monday digest also includes a <span class="spotlight-inline">Spotlight</span> — one event that's genuinely worth going to but easy to overlook. The kind of thing you'd thank a friend for telling you about.</p>
     </div>
     <div class="sports-grid">
       <div class="sport-card tennis">
@@ -468,6 +471,20 @@
           <div class="sport-img-label">Darts</div>
         </div>
         <div class="sport-card-body"><div class="sport-events">WK · Premier League · World Matchplay · Grand Slam · Dutch Open</div></div>
+      </div>
+      <div class="sport-card spotlight-card">
+        <div class="sport-img" style="background-image:url('spotlight1.jpg')">
+          <div class="spotlight-card-badge">Spotlight</div>
+          <div class="sport-img-label">3x3 Basketball</div>
+        </div>
+        <div class="sport-card-body"><div class="sport-events">NDSM waterfront · World Tour Amsterdam · 3x3NL Finals</div></div>
+      </div>
+      <div class="sport-card spotlight-card">
+        <div class="sport-img" style="background-image:url('spotlight2.jpg')">
+          <div class="spotlight-card-badge">Spotlight</div>
+          <div class="sport-img-label">Polo</div>
+        </div>
+        <div class="sport-card-body"><div class="sport-events">Museumplein Polo Amsterdam · Outdoor events</div></div>
       </div>
     </div>
     <div class="spotlight-teaser-inner">

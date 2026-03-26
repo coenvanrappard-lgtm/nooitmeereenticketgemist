@@ -233,48 +233,50 @@
     @media (max-width: 900px) { .free-banner { grid-template-columns: 1fr; } .free-banner-left { border-right: none; border-bottom: 1px solid var(--orange-mid); } }
 
     /* Signup */
-    .signup { padding: 5.5rem 0 6rem; background: var(--dark); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; }
-    .signup-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-    .signup-box { border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 3rem; background: rgba(255,255,255,0.04); }
-    .signup-aside { padding-top: 0.5rem; }
-    .signup-aside-title { font-family: 'DM Serif Display', serif; font-size: 32px; color: #fff; line-height: 1.2; letter-spacing: -0.4px; margin-bottom: 2rem; }
-    .signup-aside-items { display: flex; flex-direction: column; gap: 1.75rem; }
-    .signup-aside-item { display: flex; gap: 1rem; align-items: flex-start; }
-    .signup-aside-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; margin-top: 1px; }
-    .signup-aside-item-title { font-size: 14px; font-weight: 500; color: #fff; margin-bottom: 3px; }
-    .signup-aside-item-body { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; font-weight: 300; }
-    .signup-title { font-family: 'DM Serif Display', serif; font-size: 34px; margin-bottom: 0.75rem; line-height: 1.2; color: #fff; }
-    .signup-sub { font-size: 15px; color: rgba(255,255,255,0.55); margin-bottom: 2rem; font-weight: 300; line-height: 1.6; }
-    .signup-form { display: flex; flex-direction: column; gap: 12px; }
-    .signup-form input { padding: 12px 14px; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: #fff; background: rgba(255,255,255,0.08); width: 100%; outline: none; transition: border-color 0.15s; }
-    .signup-form input:focus { border-color: var(--orange); }
-    .signup-form input::placeholder { color: rgba(255,255,255,0.3); }
+    .signup { padding: 6rem 0 7rem; background: var(--dark); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; }
+    .signup-header { text-align: center; max-width: 620px; margin: 0 auto 3.5rem; }
+    .signup-header-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); margin-bottom: 1.25rem; }
+    .signup-header-title { font-family: 'DM Serif Display', serif; font-size: clamp(34px, 4.5vw, 52px); color: #fff; line-height: 1.08; letter-spacing: -1px; margin-bottom: 1rem; }
+    .signup-header-sub { font-size: 16px; color: rgba(255,255,255,0.5); font-weight: 300; line-height: 1.7; margin-bottom: 1.75rem; }
+    .signup-chips { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .signup-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border: 1px solid rgba(255,255,255,0.12); border-radius: 999px; font-size: 13px; color: rgba(255,255,255,0.65); font-weight: 400; }
+    .signup-chip::before { content: '✓'; color: var(--orange); font-weight: 700; font-size: 12px; }
+    .signup-inner { max-width: 560px; margin: 0 auto; }
+    .signup-box { border-radius: 20px; padding: 2.5rem; background: #fff; box-shadow: 0 32px 80px rgba(0,0,0,0.5); }
+    .signup-title { font-family: 'DM Serif Display', serif; font-size: 26px; margin-bottom: 0.4rem; line-height: 1.2; color: var(--body); }
+    .signup-sub { font-size: 14px; color: var(--muted); margin-bottom: 1.5rem; font-weight: 300; line-height: 1.6; }
+    .signup-form { display: flex; flex-direction: column; gap: 10px; }
+    .signup-form input { padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--body); background: var(--bg); width: 100%; outline: none; transition: border-color 0.15s; }
+    .signup-form input:focus { border-color: var(--orange); background: #fff; }
+    .signup-form input::placeholder { color: var(--subtle); }
     .notif-toggle { display: flex; gap: 8px; }
-    .notif-btn { flex: 1; padding: 10px; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; background: transparent; color: rgba(255,255,255,0.5); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s; }
+    .notif-btn { flex: 1; padding: 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s; }
     .notif-btn.active { background: var(--orange); border-color: var(--orange); color: #fff; }
-    .reminders-section { display: flex; flex-direction: column; gap: 8px; }
+    .reminders-section { display: flex; flex-direction: column; gap: 6px; }
+    .reminders-label { font-size: 12px; font-weight: 600; color: var(--body); letter-spacing: 0.02em; text-transform: uppercase; font-size: 11px; }
     .reminder-options { display: flex; flex-direction: column; gap: 6px; }
     .reminder-opt { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; }
     .reminder-opt input[type="checkbox"] { display: none; }
-    .reminder-box { display: flex; flex-direction: column; padding: 10px 12px; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; background: rgba(255,255,255,0.05); flex: 1; transition: all 0.15s; }
-    .reminder-opt input:checked + .reminder-box { border-color: var(--orange); background: rgba(240,78,15,0.1); }
-    .reminder-label { font-size: 13px; font-weight: 500; color: #fff; }
-    .reminder-desc { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+    .reminder-box { display: flex; flex-direction: column; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); flex: 1; transition: all 0.15s; }
+    .reminder-opt input:checked + .reminder-box { border-color: var(--orange); background: var(--orange-light); }
+    .reminder-label { font-size: 13px; font-weight: 500; color: var(--body); }
+    .reminder-desc { font-size: 11px; color: var(--muted); margin-top: 2px; }
     .plan-toggle { display: flex; gap: 8px; }
-    .plan-btn { flex: 1; padding: 10px; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; background: transparent; font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; text-align: center; transition: all 0.15s; color: rgba(255,255,255,0.6); }
+    .plan-btn { flex: 1; padding: 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; text-align: center; transition: all 0.15s; color: var(--muted); }
     .plan-btn.active { border-color: var(--orange); background: var(--orange); color: #fff; }
-    .events-section { display: none; flex-direction: column; gap: 12px; padding-top: 4px; }
+    .events-section { display: none; flex-direction: column; gap: 10px; padding-top: 2px; }
     .events-section.visible { display: flex; }
-    .sport-group { border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; overflow: hidden; }
-    .sport-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; cursor: pointer; font-size: 13px; font-weight: 500; background: rgba(255,255,255,0.05); user-select: none; color: rgba(255,255,255,0.85); }
-    .sport-header .chevron { font-size: 10px; color: rgba(255,255,255,0.4); transition: transform 0.2s; }
+    .sport-group { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .sport-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; cursor: pointer; font-size: 13px; font-weight: 500; background: var(--bg); user-select: none; color: var(--body); }
+    .sport-header .chevron { font-size: 10px; color: var(--subtle); transition: transform 0.2s; }
     .sport-header.open .chevron { transform: rotate(180deg); }
-    .sport-events-list { display: none; padding: 8px 14px 12px; display: flex; flex-wrap: wrap; gap: 8px; background: rgba(0,0,0,0.15); }
-    .event-toggle { display: flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; cursor: pointer; font-size: 12px; color: rgba(255,255,255,0.65); background: transparent; transition: all 0.15s; user-select: none; }
+    .sport-events-list { display: none; padding: 8px 14px 12px; display: flex; flex-wrap: wrap; gap: 8px; background: #fff; border-top: 1px solid var(--border); }
+    .event-toggle { display: flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1px solid var(--border); border-radius: 6px; cursor: pointer; font-size: 12px; color: var(--muted); background: var(--bg); transition: all 0.15s; user-select: none; }
+    .event-toggle:hover { border-color: #bbb; color: var(--body); }
     .event-toggle.selected { border-color: var(--orange); background: var(--orange); color: #fff; }
-    .event-toggle.disabled { opacity: 0.3; cursor: not-allowed; }
-    .event-counter { font-size: 12px; color: rgba(255,255,255,0.4); text-align: right; }
-    .event-counter span { color: var(--orange); font-weight: 500; }
+    .event-toggle.disabled { opacity: 0.35; cursor: not-allowed; }
+    .event-counter { font-size: 12px; color: var(--muted); text-align: right; }
+    .event-counter span { color: var(--orange); font-weight: 600; }
     .signup-note { font-size: 12px; color: rgba(255,255,255,0.3); margin-top: 4px; }
     .success-msg { display: none; background: rgba(0,168,107,0.15); border: 1px solid rgba(0,168,107,0.4); border-radius: 8px; padding: 1rem; font-size: 14px; color: #4ade80; }
     .error-msg { display: none; background: rgba(240,78,15,0.15); border: 1px solid rgba(240,78,15,0.4); border-radius: 8px; padding: 1rem; font-size: 14px; color: #fca5a5; }
@@ -492,10 +494,20 @@
 </div>
 
 <section class="signup" id="signup-form">
+  <div class="signup-header">
+    <p class="signup-header-eyebrow">Get started — it's free</p>
+    <h2 class="signup-header-title">Never miss another ticket sale.</h2>
+    <p class="signup-header-sub">Pick your events once. We'll alert you the moment a sale opens, the day before, and one hour before — for every sport you care about.</p>
+    <div class="signup-chips">
+      <span class="signup-chip">Free forever</span>
+      <span class="signup-chip">10+ sports covered</span>
+      <span class="signup-chip">No spam, ever</span>
+    </div>
+  </div>
   <div class="signup-inner">
     <div class="signup-box">
       <h2 class="signup-title">Start getting alerts</h2>
-      <p class="signup-sub">Pick your events and we'll notify you the moment tickets go on sale. Completely free — always.</p>
+      <p class="signup-sub">Pick your events and we'll notify you the moment tickets go on sale.</p>
       <div class="signup-form">
         <input type="text" id="signup-name" placeholder="Your name" />
         <div class="notif-toggle">
@@ -506,7 +518,7 @@
         <input type="email" id="signup-email" placeholder="Your email address" />
         <input type="tel" id="signup-phone" placeholder="Your phone number (e.g. +31612345678)" style="display:none;" />
         <div class="reminders-section">
-          <div style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.8);margin-bottom:8px;">Choose your alerts</div>
+          <div style="font-size:11px;font-weight:700;color:var(--body);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Choose your alerts</div>
           <div class="reminder-options">
             <label class="reminder-opt">
               <input type="checkbox" id="reminder-day-before" checked />
@@ -525,8 +537,8 @@
           </div>
         </div>
         <div class="events-section visible" id="events-section">
-          <div style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.8);">Choose your alert events</div>
-          <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:-6px;margin-bottom:4px;">Select the events you want day-before and hour-of alerts for. The weekly digest covers all events automatically.</div>
+          <div style="font-size:11px;font-weight:700;color:var(--body);letter-spacing:0.08em;text-transform:uppercase;">Choose your events</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px;margin-bottom:2px;font-weight:300;">Select events for alerts. The weekly digest covers all events automatically.</div>
           <div class="sport-group">
             <div class="sport-header open" onclick="toggleSport(this)">Tennis <span class="chevron">▼</span></div>
             <div class="sport-events-list">
@@ -605,39 +617,6 @@
         <div class="success-msg" id="success-msg">You're in! Check your inbox — alerts will start arriving shortly.</div>
         <div class="error-msg" id="error-msg">Something went wrong. Please try again.</div>
         <p class="signup-note">No spam. Just ticket alerts that actually matter.</p>
-      </div>
-    </div>
-    <div class="signup-aside">
-      <h2 class="signup-aside-title">Never scramble for tickets again.</h2>
-      <div class="signup-aside-items">
-        <div class="signup-aside-item">
-          <div class="signup-aside-icon">📬</div>
-          <div>
-            <div class="signup-aside-item-title">Weekly digest</div>
-            <div class="signup-aside-item-body">Every Monday — a full overview of upcoming sales, what's live, and what needs your attention.</div>
-          </div>
-        </div>
-        <div class="signup-aside-item">
-          <div class="signup-aside-icon">⏰</div>
-          <div>
-            <div class="signup-aside-item-title">Day-before &amp; hour alerts</div>
-            <div class="signup-aside-item-body">Get a reminder the day before a sale opens, and again one hour before — for the events you choose.</div>
-          </div>
-        </div>
-        <div class="signup-aside-item">
-          <div class="signup-aside-icon">🔦</div>
-          <div>
-            <div class="signup-aside-item-title">Spotlight</div>
-            <div class="signup-aside-item-body">Each digest features one underrated event worth going to — something you'd enjoy but probably wouldn't have found yourself.</div>
-          </div>
-        </div>
-        <div class="signup-aside-item">
-          <div class="signup-aside-icon">🎟</div>
-          <div>
-            <div class="signup-aside-item-title">Completely free, forever</div>
-            <div class="signup-aside-item-body">No subscription, no credit card, no trial period. If it helps you get a ticket, that's all we need.</div>
-          </div>
-        </div>
       </div>
     </div>
   </div>

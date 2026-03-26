@@ -164,6 +164,20 @@
       color: #444; font-size: 13px;
       background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
     }
+    .card-rank {
+      position: absolute;
+      top: 10px; left: 10px;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.72);
+      backdrop-filter: blur(4px);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      line-height: 1;
+      z-index: 2;
+    }
     .card-poster-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 55%);
@@ -429,12 +443,15 @@
       ? `<div class="card-genres">${m.genres.slice(0,3).map(g => `<span class="genre-chip">${esc(g)}</span>`).join("")}</div>`
       : "";
 
+    const rankBadge = m.rank ? `<div class="card-rank">${m.rank}</div>` : "";
+
     return `
       <article class="movie-card">
         <div class="card-poster">
           <a href="${esc(m.link || "#")}" target="_blank" rel="noreferrer" tabindex="-1" aria-label="${esc(m.title)}">
             ${poster}
           </a>
+          ${rankBadge}
           ${overlayTrailer}
         </div>
         <div class="card-body">
@@ -476,7 +493,7 @@
       const feed = await res.json();
 
       const cineville = feed.cineville || [];
-      const trending  = feed.trending  || [];
+      const trending  = (feed.trending || []).map((m, i) => ({ ...m, rank: i + 1 }));
 
       if (feed.generated_at) {
         const d = new Date(feed.generated_at);

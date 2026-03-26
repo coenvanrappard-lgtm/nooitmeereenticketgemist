@@ -81,13 +81,7 @@
     .hero-title em { font-style: italic; color: var(--orange); }
     .hero-sub {
       font-size: 17px; font-weight: 300; line-height: 1.75;
-      color: rgba(255,255,255,0.55); max-width: 520px; margin-bottom: 2rem;
-    }
-    .hero-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; }
-    .hero-stat { color: rgba(255,255,255,0.4); font-size: 13px; font-weight: 300; }
-    .hero-stat strong {
-      display: block; font-size: 24px; font-weight: 500;
-      color: rgba(255,255,255,0.9); letter-spacing: -0.5px; margin-bottom: 2px;
+      color: rgba(255,255,255,0.55); max-width: 520px;
     }
 
     /* ── Filter bar ── */
@@ -292,11 +286,6 @@
     <p class="hero-eyebrow">What's on this week</p>
     <h1 class="hero-title">The best films in<br><em>cinema right now.</em></h1>
     <p class="hero-sub">Cineville editor picks and what's trending at Pathé — updated every week, all in one place.</p>
-    <div class="hero-stats">
-      <div class="hero-stat"><strong id="stat-cineville">—</strong>Cineville picks</div>
-      <div class="hero-stat"><strong id="stat-trending">—</strong>Trending now</div>
-      <div class="hero-stat"><strong id="stat-updated">—</strong>Last updated</div>
-    </div>
   </div>
 </section>
 
@@ -443,17 +432,10 @@
       const cineville = feed.cineville || [];
       const trending  = feed.trending  || [];
 
-      document.getElementById("stat-cineville").textContent = cineville.length;
-      document.getElementById("stat-trending").textContent  = trending.length;
-
       if (feed.generated_at) {
         const d = new Date(feed.generated_at);
-        const label = d.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
-        document.getElementById("stat-updated").textContent   = label;
         document.getElementById("filter-updated").textContent = "Updated " +
           d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
-      } else {
-        document.getElementById("stat-updated").textContent = "Weekly";
       }
 
       render("grid-cineville", cineville);

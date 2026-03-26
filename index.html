@@ -195,20 +195,42 @@
 
     /* Pricing */
     .pricing { padding: 5.5rem 0; }
-    .free-banner { border: 2px solid var(--orange); border-radius: 16px; padding: 2.5rem; background: var(--orange-light); margin-top: 3rem; display: grid; grid-template-columns: 1fr auto; gap: 2.5rem; align-items: center; }
-    .free-banner-left {}
-    .free-banner-price { font-family: 'DM Serif Display', serif; font-size: 64px; line-height: 1; color: var(--orange); letter-spacing: -2px; margin-bottom: 0.25rem; }
-    .free-banner-label { font-size: 13px; color: var(--muted); margin-bottom: 1.5rem; }
-    .free-features { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 2rem; }
-    .free-features li { font-size: 14px; color: var(--body); display: flex; gap: 8px; font-weight: 400; align-items: flex-start; }
-    .free-features li::before { content: '✓'; color: var(--orange); font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
-    .donate-card { border: 1px solid var(--orange-mid); border-radius: 14px; padding: 2rem; background: #fff; text-align: center; min-width: 220px; }
-    .donate-card-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
-    .donate-card-title { font-family: 'DM Serif Display', serif; font-size: 22px; line-height: 1.2; margin-bottom: 0.75rem; letter-spacing: -0.3px; }
-    .donate-card-body { font-size: 13px; color: var(--muted); line-height: 1.65; font-weight: 300; margin-bottom: 1.5rem; }
-    .btn-donate { display: inline-block; background: var(--orange); color: #fff; border: none; padding: 13px 24px; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; transition: opacity 0.15s; width: 100%; text-align: center; }
+    .free-banner {
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 0;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .free-banner-left {
+      background: var(--orange-light);
+      padding: 2.75rem 3rem;
+      border-right: 1px solid var(--orange-mid);
+    }
+    .free-banner-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); margin-bottom: 1rem; }
+    .free-banner-price { font-family: 'DM Serif Display', serif; font-size: 80px; line-height: 0.9; color: var(--body); letter-spacing: -3px; margin-bottom: 0.5rem; }
+    .free-banner-price span { font-size: 36px; letter-spacing: -1px; vertical-align: super; }
+    .free-banner-label { font-size: 14px; color: var(--muted); margin-bottom: 2rem; font-weight: 300; }
+    .free-features { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .free-features li { font-size: 14px; color: var(--body); display: flex; gap: 10px; font-weight: 400; align-items: center; }
+    .free-features li::before { content: ''; width: 18px; height: 18px; border-radius: 50%; background: var(--orange); flex-shrink: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='8' viewBox='0 0 10 8'%3E%3Cpath d='M1 4l2.5 2.5L9 1' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; }
+    .donate-card {
+      background: var(--white);
+      padding: 2.75rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
+    }
+    .donate-card-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--subtle); margin-bottom: 1rem; }
+    .donate-card-title { font-family: 'DM Serif Display', serif; font-size: 26px; line-height: 1.15; letter-spacing: -0.4px; margin-bottom: 0.75rem; }
+    .donate-card-body { font-size: 14px; color: var(--muted); line-height: 1.7; font-weight: 300; margin-bottom: 1.75rem; }
+    .btn-donate { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--orange); color: #fff; border: none; padding: 13px 24px; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; transition: opacity 0.15s; }
     .btn-donate:hover { opacity: 0.88; }
-    @media (max-width: 767px) { .free-banner { grid-template-columns: 1fr; } .free-features { grid-template-columns: 1fr; } }
+    .donate-note { margin-top: 0.75rem; font-size: 12px; color: var(--subtle); font-weight: 300; }
+    @media (max-width: 900px) { .free-banner { grid-template-columns: 1fr; } .free-banner-left { border-right: none; border-bottom: 1px solid var(--orange-mid); } }
 
     /* Signup */
     .signup { padding: 5.5rem 0 6rem; background: var(--dark); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; }
@@ -446,22 +468,24 @@
     <p class="section-label">Pricing</p>
     <div class="free-banner">
       <div class="free-banner-left">
-        <div class="free-banner-price">€0</div>
+        <div class="free-banner-eyebrow">Pricing</div>
+        <div class="free-banner-price"><span>€</span>0</div>
         <div class="free-banner-label">Free forever. No credit card. No catch.</div>
         <ul class="free-features">
-          <li>Weekly digest — all events</li>
-          <li>Email alerts for every sport</li>
+          <li>Weekly digest covering all events</li>
+          <li>Email alerts the moment tickets go live</li>
           <li>Day-before &amp; hour-of reminders</li>
-          <li>Darts, tennis, football, golf &amp; more</li>
+          <li>Darts, tennis, football, golf, rugby &amp; more</li>
           <li>Lottery &amp; ballot registration alerts</li>
-          <li>Fluitsignaal Movies picks</li>
+          <li>Fluitsignaal Movies — weekly film picks</li>
         </ul>
       </div>
       <div class="donate-card">
         <div class="donate-card-label">Enjoying it?</div>
         <div class="donate-card-title">Support Fluitsignaal</div>
-        <div class="donate-card-body">This runs on coffee and stubbornness. If it's saved you from missing a ticket sale, a small contribution goes a long way.</div>
+        <div class="donate-card-body">This runs on coffee and stubbornness. If it's helped you get a ticket, a small contribution keeps it going.</div>
         <a class="btn-donate" href="https://ko-fi.com/fluitsignaal" target="_blank" rel="noreferrer">☕ Buy me a coffee</a>
+        <p class="donate-note">Completely optional. The service is free either way.</p>
       </div>
     </div>
   </section>

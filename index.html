@@ -257,9 +257,6 @@
     .signup-form input { padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--body); background: var(--bg); width: 100%; outline: none; transition: border-color 0.15s; }
     .signup-form input:focus { border-color: var(--orange); background: #fff; }
     .signup-form input::placeholder { color: var(--subtle); }
-    .notif-toggle { display: flex; gap: 8px; }
-    .notif-btn { flex: 1; padding: 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s; }
-    .notif-btn.active { background: var(--orange); border-color: var(--orange); color: #fff; }
     .reminders-section { display: flex; flex-direction: column; gap: 6px; }
     .reminders-label { font-size: 12px; font-weight: 600; color: var(--body); letter-spacing: 0.02em; text-transform: uppercase; font-size: 11px; }
     .reminder-options { display: flex; flex-direction: column; gap: 6px; }
@@ -524,13 +521,7 @@
       <p class="signup-sub">Pick your events and we'll notify you the moment tickets go on sale.</p>
       <div class="signup-form">
         <input type="text" id="signup-name" placeholder="Your name" />
-        <div class="notif-toggle">
-          <button class="notif-btn active" id="notif-email" onclick="selectNotif('email')">Email</button>
-          <button class="notif-btn" id="notif-sms" onclick="selectNotif('sms')">SMS</button>
-          <button class="notif-btn" id="notif-both" onclick="selectNotif('both')">Both</button>
-        </div>
         <input type="email" id="signup-email" placeholder="Your email address" />
-        <input type="tel" id="signup-phone" placeholder="Your phone number (e.g. +31612345678)" style="display:none;" />
         <div class="reminders-section">
           <div style="font-size:11px;font-weight:700;color:var(--body);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Choose your alerts</div>
           <div class="reminder-options">
@@ -713,15 +704,7 @@ function heroSignup() {
 
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwP9GisrJfJO7_6IYiovEBBaAKNz9kUeVCPhgupX2QKAw7u7qqv5N5-zG1oYqaCD4zT/exec';
 let currentPlan = 'free';
-let currentNotif = 'email';
 let selectedEvents = new Set();
-
-function selectNotif(notif) {
-  currentNotif = notif;
-  ['email','sms','both'].forEach(n => document.getElementById('notif-'+n).classList.toggle('active', n === notif));
-  document.getElementById('signup-email').style.display = notif === 'sms' ? 'none' : '';
-  document.getElementById('signup-phone').style.display = notif === 'email' ? 'none' : '';
-}
 
 function openAccountModal() {
   document.getElementById('account-modal-overlay').classList.add('open');
@@ -775,18 +758,16 @@ function updateToggles() {
 }
 async function handleSignup() {
   const name = document.getElementById('signup-name').value.trim();
-  const email = currentNotif !== 'sms' ? document.getElementById('signup-email').value.trim() : '';
-  const phone = currentNotif !== 'email' ? document.getElementById('signup-phone').value.trim() : '';
+  const email = document.getElementById('signup-email').value.trim();
   if (!name) { alert('Please fill in your name.'); return; }
-  if (currentNotif !== 'sms' && !email) { alert('Please fill in your email.'); return; }
-  if (currentNotif !== 'email' && !phone) { alert('Please fill in your phone number.'); return; }
+  if (!email) { alert('Please fill in your email.'); return; }
   if (selectedEvents.size === 0) { alert('Please select at least one event.'); return; }
   const btn = event.target;
   btn.textContent = 'Sending…';
   btn.disabled = true;
   const reminders = ['day_before','hour_before'].filter(r => document.getElementById('reminder-'+r.replace('_','-')).checked).join('|');
   try {
-    await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify({ name, email, phone, plan: currentPlan, events: [...selectedEvents].join('|'), notifications: currentNotif, reminders }) });
+    await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify({ name, email, plan: currentPlan, events: [...selectedEvents].join('|'), notifications: 'email', reminders }) });
     document.getElementById('success-msg').style.display = 'block';
     document.getElementById('error-msg').style.display = 'none';
     btn.style.display = 'none';

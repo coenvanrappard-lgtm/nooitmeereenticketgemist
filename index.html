@@ -116,7 +116,15 @@
     .hero-eyebrow::before { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--orange); }
     .hero-title { font-family: 'DM Serif Display', serif; font-size: clamp(44px, 6vw, 72px); line-height: 1.06; letter-spacing: -1.5px; margin-bottom: 1.5rem; color: #fff; }
     .hero-title em { font-style: italic; color: var(--orange); }
-    .hero-sub { font-size: 18px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.6); max-width: 520px; margin-bottom: 2.75rem; }
+    .hero-sub { font-size: 18px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.6); max-width: 520px; margin-bottom: 2rem; }
+    .hero-quick-signup { margin-top: 2rem; }
+    .hero-form-row { display: flex; gap: 10px; max-width: 580px; }
+    .hero-input { flex: 1; padding: 14px 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.1); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 15px; outline: none; transition: border-color 0.15s, background 0.15s; }
+    .hero-input::placeholder { color: rgba(255,255,255,0.35); }
+    .hero-input:focus { border-color: var(--orange); background: rgba(255,255,255,0.15); }
+    .hero-form-note { margin-top: 10px; font-size: 12px; color: rgba(255,255,255,0.3); }
+    .hero-form-note a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    .hero-form-note a:hover { color: rgba(255,255,255,0.8); }
     .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
     .btn-primary { background: var(--orange); color: #fff; border: none; padding: 14px 28px; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; cursor: pointer; transition: opacity 0.15s; }
     .btn-primary:hover { opacity: 0.88; }
@@ -299,6 +307,8 @@
       .nav-mobile-cta { display: block; background: var(--orange); color: #fff; border: none; padding: 9px 18px; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; }
       .hero-wrap { padding: 3.5rem 0 3rem; }
       .hero-sub { font-size: 16px; }
+      .hero-form-row { flex-direction: column; max-width: 100%; }
+      .hero-input { width: 100%; }
       .hero-actions { flex-direction: column; align-items: stretch; }
       .btn-primary, .btn-secondary { text-align: center; width: 100%; }
       .events-strip { padding: 1rem 0; }
@@ -357,9 +367,13 @@
       <p class="hero-eyebrow">Free forever · No credit card needed</p>
       <h1 class="hero-title">Tickets sell out.<br><em>Not for you.</em></h1>
       <p class="hero-sub">Get email alerts the moment tickets go on sale for the world's biggest sporting events — grand slams, World Cup, Ryder Cup, and more. Completely free to use.</p>
-      <div class="hero-actions">
-        <button class="btn-primary" onclick="document.getElementById('signup-form').scrollIntoView({behavior:'smooth'})">Start for free</button>
-        <button class="btn-secondary" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">See how it works</button>
+      <div class="hero-quick-signup">
+        <div class="hero-form-row">
+          <input type="text" id="hero-name" class="hero-input" placeholder="Your name" autocomplete="given-name" />
+          <input type="email" id="hero-email" class="hero-input" placeholder="Your email address" autocomplete="email" />
+          <button class="btn-primary" onclick="heroSignup()">Get free alerts</button>
+        </div>
+        <p class="hero-form-note">Free forever · No spam · <a href="#" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'});return false;">See how it works</a></p>
       </div>
     </section>
   </div>
@@ -689,6 +703,13 @@
 
 <script>
 
+function heroSignup() {
+  const name  = document.getElementById('hero-name').value.trim();
+  const email = document.getElementById('hero-email').value.trim();
+  if (name)  document.getElementById('signup-name').value  = name;
+  if (email) document.getElementById('signup-email').value = email;
+  document.getElementById('events-section').scrollIntoView({ behavior: 'smooth' });
+}
 
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwP9GisrJfJO7_6IYiovEBBaAKNz9kUeVCPhgupX2QKAw7u7qqv5N5-zG1oYqaCD4zT/exec';
 let currentPlan = 'free';

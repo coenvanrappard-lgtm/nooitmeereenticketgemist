@@ -69,9 +69,9 @@
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 8px;
       font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--orange); margin-bottom: 1.5rem;
+      color: var(--muted); margin-bottom: 1.5rem;
     }
-    .hero-eyebrow::before { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--orange); }
+    .hero-eyebrow::before { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--muted); }
     .hero-title {
       font-family: 'DM Serif Display', serif;
       font-size: clamp(40px, 5.5vw, 64px);
@@ -111,7 +111,7 @@
     .section-label {
       display: flex; align-items: center; gap: 10px;
       font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--orange); margin-bottom: 0.75rem;
+      color: var(--muted); margin-bottom: 0.75rem;
     }
     .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
     .section-title {
@@ -343,14 +343,14 @@
 
   <section class="section" id="section-trending">
     <p class="section-label">Most watched in Dutch cinemas</p>
-    <h2 class="section-title">What the Netherlands is watching this week</h2>
+    <h2 class="section-title">Most watched in Dutch cinemas</h2>
     <p class="section-sub">This week's top films at the Dutch box office — with trailers and runtimes so you can decide fast.</p>
     <div class="movie-grid" id="grid-trending"></div>
   </section>
 
   <section class="section" id="section-cineville">
     <p class="section-label">Cineville picks</p>
-    <h2 class="section-title">Films the Cineville team thinks are worth your evening</h2>
+    <h2 class="section-title">Two films recommended by the Cineville team</h2>
     <p class="section-sub">Curated picks from Cineville's editors — not the most-hyped, just the ones that are actually good right now.</p>
     <div class="movie-grid" id="grid-cineville"></div>
   </section>

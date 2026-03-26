@@ -162,21 +162,21 @@
     .step-title { font-size: 15px; font-weight: 500; margin-bottom: 0.5rem; }
     .step-body { font-size: 14px; color: var(--muted); line-height: 1.65; font-weight: 300; }
 
-    /* Sports */
-    .sports { padding: 5.5rem 0; background: var(--bg); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; }
+    /* Sports + Spotlight (combined dark section) */
+    .sports { background: var(--dark); padding: 5.5rem 2rem; margin: 0 -2rem; }
     .sports-inner { max-width: 1100px; margin: 0 auto; }
+    .sports .section-label { color: rgba(255,255,255,0.4); }
+    .sports .section-label::after { background: rgba(255,255,255,0.12); }
     .sports-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 3rem; }
-    .sport-card { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; background: var(--white); transition: transform 0.15s, box-shadow 0.15s; }
-    .sport-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+    .sport-card { border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; overflow: hidden; background: rgba(255,255,255,0.05); transition: transform 0.15s, box-shadow 0.15s; }
+    .sport-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
     .sport-img { height: 130px; background-size: cover; background-position: center; position: relative; }
-    .sport-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.45) 100%); }
+    .sport-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.55) 100%); }
     .sport-img-label { position: absolute; bottom: 10px; left: 12px; font-size: 15px; font-weight: 700; color: #fff; z-index: 1; letter-spacing: -0.2px; text-shadow: 0 1px 4px rgba(0,0,0,0.5); }
     .sport-card-body { padding: 1rem 1.25rem 1.25rem; }
     .sport-name { font-size: 14px; font-weight: 600; margin-bottom: 8px; display: none; }
-    .sport-events { font-size: 12px; color: var(--muted); line-height: 1.8; font-weight: 300; }
-
-    /* Spotlight teaser */
-    .spotlight-teaser { background: var(--dark); padding: 5.5rem 2rem; }
+    .sport-events { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.8; font-weight: 300; }
+    .sports-spotlight-divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 4.5rem 0; }
     .spotlight-teaser-inner { max-width: 680px; margin: 0 auto; }
     .spotlight-teaser-img {
       width: 210px; height: 210px; border-radius: 50%;
@@ -187,7 +187,7 @@
     .spotlight-teaser-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #a855f7; margin-bottom: 1.25rem; display: block; }
     .spotlight-teaser-title { font-family: 'DM Serif Display', serif; font-size: clamp(26px, 3.5vw, 40px); color: #fff; line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 1.25rem; }
     .spotlight-teaser-body { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.75; font-weight: 300; margin-bottom: 2rem; }
-    @media (max-width: 767px) { .spotlight-teaser { padding: 3.5rem 1.25rem; } .spotlight-teaser-img { float: none; display: block; margin: 0 auto 2rem; width: 160px; height: 160px; } }
+    @media (max-width: 767px) { .spotlight-teaser-img { float: none; display: block; margin: 0 auto 2rem; width: 160px; height: 160px; } }
 
     /* FAQ */
     .faq { padding: 5.5rem 0; }
@@ -463,16 +463,14 @@
         <div class="sport-card-body"><div class="sport-events">WK · Premier League · World Matchplay · Grand Slam · Dutch Open</div></div>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="spotlight-teaser">
-  <div class="spotlight-teaser-inner">
-    <div class="spotlight-teaser-img" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/22/3x3basketball.jpg')"></div>
-    <div class="spotlight-teaser-label">Spotlight</div>
-    <h2 class="spotlight-teaser-title">Every week, one event that deserves more attention than it gets.</h2>
-    <p class="spotlight-teaser-body">Polo on Museumplein. 3x3 basketball on the NDSM waterfront. Ice hockey in a sold-out Tilburg arena. Each week's digest includes a Spotlight — a short write-up on an event that's worth going to but easy to overlook. Subscribers only.</p>
-    <button class="btn-primary" onclick="document.getElementById('signup-form').scrollIntoView({behavior:'smooth'})">Get the weekly digest</button>
+    <hr class="sports-spotlight-divider">
+    <div class="spotlight-teaser-inner">
+      <div class="spotlight-teaser-img" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/22/3x3basketball.jpg')"></div>
+      <div class="spotlight-teaser-label">Spotlight</div>
+      <h2 class="spotlight-teaser-title">Every week, one event that deserves more attention than it gets.</h2>
+      <p class="spotlight-teaser-body">Polo on Museumplein. 3x3 basketball on the NDSM waterfront. Ice hockey in a sold-out Tilburg arena. Each week's digest includes a Spotlight — a short write-up on an event that's worth going to but easy to overlook. Subscribers only.</p>
+      <button class="btn-primary" onclick="document.getElementById('signup-form').scrollIntoView({behavior:'smooth'})">Get the weekly digest</button>
+    </div>
   </div>
 </section>
 

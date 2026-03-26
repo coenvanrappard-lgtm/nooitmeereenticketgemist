@@ -167,7 +167,11 @@
     .sports-inner { max-width: 1100px; margin: 0 auto; }
     .sports .section-label { color: rgba(255,255,255,0.4); }
     .sports .section-label::after { background: rgba(255,255,255,0.12); }
-    .sports-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 3rem; }
+    .sports-section-intro { max-width: 680px; margin-bottom: 3rem; }
+    .sports-intro-title { font-family: 'DM Serif Display', serif; font-size: clamp(24px, 3vw, 36px); color: #fff; line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 1rem; }
+    .sports-intro-body { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.75; font-weight: 300; }
+    .spotlight-inline { color: #a855f7; font-style: italic; }
+    .sports-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 4rem; }
     .sport-card { border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; overflow: hidden; background: rgba(255,255,255,0.05); transition: transform 0.15s, box-shadow 0.15s; }
     .sport-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
     .sport-img { height: 130px; background-size: cover; background-position: center; position: relative; }
@@ -176,8 +180,7 @@
     .sport-card-body { padding: 1rem 1.25rem 1.25rem; }
     .sport-name { font-size: 14px; font-weight: 600; margin-bottom: 8px; display: none; }
     .sport-events { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.8; font-weight: 300; }
-    .sports-spotlight-divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 4.5rem 0; }
-    .spotlight-teaser-inner { max-width: 680px; margin: 0 auto; }
+.spotlight-teaser-inner { max-width: 680px; margin: 0 auto; }
     .spotlight-teaser-img {
       width: 210px; height: 210px; border-radius: 50%;
       background-size: cover; background-position: center;
@@ -424,7 +427,11 @@
 
 <section class="sports" id="sports">
   <div class="sports-inner">
-    <p class="section-label">Events we cover</p>
+    <p class="section-label">What we cover</p>
+    <div class="sports-section-intro">
+      <h2 class="sports-intro-title">The biggest ticket moments in sport — and the hidden gems you'd otherwise miss.</h2>
+      <p class="sports-intro-body">We track 22+ events across 6 sports and send you alerts the moment tickets go on sale. Every Monday digest also includes a <span class="spotlight-inline">Spotlight</span> — one event worth going to that's easy to overlook.</p>
+    </div>
     <div class="sports-grid">
       <div class="sport-card tennis">
         <div class="sport-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/a/af/Wimbledon_court_No._1.JPG')">
@@ -451,7 +458,7 @@
         <div class="sport-card-body"><div class="sport-events">Six Nations</div></div>
       </div>
       <div class="sport-card hockey">
-        <div class="sport-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/2/2d/Match_Hockey_Grande_Bretagne_x_Espagne_Jeux_Olympiques_2024_Terrain_1_Stade_Yves_Manoir_-_Colombes_%28FR92%29_-_2024-07-27_-_28.jpg')">
+        <div class="sport-img" style="background-image:url('hockey.jpg')">
           <div class="sport-img-label">Hockey</div>
         </div>
         <div class="sport-card-body"><div class="sport-events">EK · WK · Hoofdklasse Play-offs</div></div>
@@ -463,12 +470,11 @@
         <div class="sport-card-body"><div class="sport-events">WK · Premier League · World Matchplay · Grand Slam · Dutch Open</div></div>
       </div>
     </div>
-    <hr class="sports-spotlight-divider">
     <div class="spotlight-teaser-inner">
       <div class="spotlight-teaser-img" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/22/3x3basketball.jpg')"></div>
       <div class="spotlight-teaser-label">Spotlight</div>
-      <h2 class="spotlight-teaser-title">Every week, one event that deserves more attention than it gets.</h2>
-      <p class="spotlight-teaser-body">Polo on Museumplein. 3x3 basketball on the NDSM waterfront. Ice hockey in a sold-out Tilburg arena. Each week's digest includes a Spotlight — a short write-up on an event that's worth going to but easy to overlook. Subscribers only.</p>
+      <h2 class="spotlight-teaser-title">Polo on Museumplein. 3x3 basketball on the waterfront. Ice hockey in a sold-out Tilburg arena.</h2>
+      <p class="spotlight-teaser-body">Beyond the headline events, every weekly digest includes a Spotlight — a short write-up on one event that's genuinely worth going to but easy to overlook. The kind of thing you'd thank a friend for telling you about.</p>
       <button class="btn-primary" onclick="document.getElementById('signup-form').scrollIntoView({behavior:'smooth'})">Get the weekly digest</button>
     </div>
   </div>
